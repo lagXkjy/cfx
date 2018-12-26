@@ -1,0 +1,116 @@
+<template>
+  <div class="wraper relative wh-100">
+    <img class="wh-100" src="../images/bg.png">
+    <div class="bg-box wh-100 absolute">
+      <div class="bg-border relative wh-100">
+        <div class="bg-border-green absolute wh-100"></div>
+      </div>
+    </div>
+    <div class="bg-box wh-100 absolute">
+      <img class="wh-100" src="../images/border.png" alt>
+    </div>
+    <div class="bg-box wh-100 absolute">
+      <div class="bg-border-t relative wh-100">
+        <div class="bg-border-green-t absolute wh-100">
+          <!-- logo -->
+          <img class="bg-happy" src="../images/happy.png" alt>
+          <img class="bg-logo" src="../images/logo.png" alt>
+          <img class="bg-newyear" src="../images/newyear.png" alt>
+          <!-- flower -->
+          <img class="bg-flower bg-flower-l" src="../images/flower-l.gif" alt>
+          <img class="bg-flower bg-flower-r" src="../images/flower-r.gif" alt>
+          <!-- fish -->
+          <img class="bg-fish bg-fish-l" src="../images/fish-l.gif" alt>
+          <img class="bg-fish bg-fish-r" src="../images/fish-r.gif" alt>
+          <!-- firecrackers -->
+          <img class="firecrackers firecrackers-l" src="../images/firecrackers-l.gif" alt>
+          <img class="firecrackers firecrackers-r" src="../images/firecrackers-r.gif" alt>
+          <!-- 路由 -->
+          <router-view></router-view>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  components: {}
+};
+</script>
+
+ <style lang='scss' scoped>
+.wrapper {
+  overflow: hidden;
+}
+.bg-box {
+  z-index: 0;
+  padding: 0.2rem;
+}
+.bg-border {
+  border: 0.58rem solid rgba(226, 202, 0, 0.8);
+}
+.bg-border-t {
+  border: 0.58rem solid rgba(226, 202, 0, 0);
+}
+.bg-border-green {
+  border: 0.1rem solid rgba(0, 100, 0, 0.8);
+}
+.bg-border-green-t {
+  border: 0.1rem solid rgba(0, 159, 71, 0);
+}
+.bg-happy {
+  width: 2.6rem;
+  position: absolute;
+  top: 0.22rem;
+  left: 0.18rem;
+}
+.bg-logo {
+  width: 3.2rem;
+  position: absolute;
+  top: 0.15rem;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.bg-newyear {
+  width: 2.6rem;
+  position: absolute;
+  top: 0.22rem;
+  right: 0.18rem;
+}
+.bg-flower {
+  width: 3rem;
+  position: absolute;
+  bottom: 0;
+}
+.bg-flower-l {
+  left: 0rem;
+}
+.bg-flower-r {
+  right: 0rem;
+}
+.bg-fish {
+  width: 3rem;
+  position: absolute;
+  bottom: -0.34rem;
+}
+.bg-fish-l {
+  left: -0.64rem;
+}
+.bg-fish-r {
+  right: -0.64rem;
+}
+.firecrackers {
+  width: 3.5rem;
+  position: absolute;
+  bottom: 3.5rem;
+}
+.firecrackers-l {
+  left: -(3.5rem / 2) - 0.3rem;
+}
+.firecrackers-r {
+  right: -(3.5rem / 2) - 0.5rem;
+}
+</style>
+
