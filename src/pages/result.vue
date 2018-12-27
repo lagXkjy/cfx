@@ -43,7 +43,7 @@
       <!-- 灯笼 -->
       <div class="wh-100 absolute">
         <img class="lantern lantern-l" src="../images/lantern-l.gif" alt>
-        <img class="lantern lantern-r" src="../images/lantern-r.gif" alt>
+        <img class="lantern lantern-r" src="../images/lantern-l.gif" alt>
       </div>
       <div class="banner-context width-100 absolute emblem">
         <span style="transform: rotateZ(-32deg) translate3d(0px, 0px, 0px);">已</span>
@@ -266,7 +266,9 @@ export default {
 }
 
 .lantern-r {
-  right: 0.1rem;
+  right: 0.15rem;
+  transform: rotateY(180deg);
+  transform-origin: center top;
 }
 
 .banner-context {

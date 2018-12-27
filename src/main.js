@@ -5,6 +5,7 @@ import './utils/font.less'
 import './utils/common.css'
 import './utils/rem.js'
 import echarts from 'echarts'
+// import './utils/init.js'
 
 Vue.config.productionTip = false
 Vue.prototype.$echarts = echarts

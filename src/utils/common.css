@@ -3,11 +3,11 @@
     padding: 0;
     box-sizing: border-box;
 }
-html,body{
+body{
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    font-family: 'Microsoft YaHei'
+    font-family: 'Microsoft YaHei';
 }
 .wh-100{
     width: 100%;
@@ -71,4 +71,9 @@ html,body{
     position: absolute;
     top: 0;
     left: 0;
+}
+.fixed{
+  position: fixed;
+  top: 0;
+  left: 0;
 }

@@ -1,9 +1,11 @@
 <template>
-  <div class="wraper relative wh-100">
+  <div class="wraper fixed wh-100">
     <img class="wh-100" src="../images/bg.png">
     <div class="bg-box wh-100 absolute">
       <div class="bg-border relative wh-100">
-        <div class="bg-border-green absolute wh-100"></div>
+        <div class="bg-border-green absolute wh-100" style="overflow:hidden;">
+           <img class="bg-petal" src="../images/petal.gif" alt>
+        </div>
       </div>
     </div>
     <div class="bg-box wh-100 absolute">
@@ -18,13 +20,13 @@
           <img class="bg-newyear" src="../images/newyear.png" alt>
           <!-- flower -->
           <img class="bg-flower bg-flower-l" src="../images/flower-l.gif" alt>
-          <img class="bg-flower bg-flower-r" src="../images/flower-r.gif" alt>
+          <img class="bg-flower bg-flower-r" src="../images/flower-l.gif" alt>
           <!-- fish -->
           <img class="bg-fish bg-fish-l" src="../images/fish-l.gif" alt>
-          <img class="bg-fish bg-fish-r" src="../images/fish-r.gif" alt>
+          <img class="bg-fish bg-fish-r" src="../images/fish-l.gif" alt>
           <!-- firecrackers -->
           <img class="firecrackers firecrackers-l" src="../images/firecrackers-l.gif" alt>
-          <img class="firecrackers firecrackers-r" src="../images/firecrackers-r.gif" alt>
+          <img class="firecrackers firecrackers-r" src="../images/firecrackers-l.gif" alt>
           <!-- 路由 -->
           <router-view></router-view>
         </div>
@@ -79,6 +81,12 @@ export default {
   top: 0.22rem;
   right: 0.18rem;
 }
+.bg-petal {
+  width: 100%;
+  position: absolute;
+  top: 3rem;
+  left: 0;
+}
 .bg-flower {
   width: 3rem;
   position: absolute;
@@ -89,6 +97,8 @@ export default {
 }
 .bg-flower-r {
   right: 0rem;
+  transform: rotateY(180deg);
+  transform-origin: center top;
 }
 .bg-fish {
   width: 3rem;
@@ -100,6 +110,8 @@ export default {
 }
 .bg-fish-r {
   right: -0.64rem;
+  transform: rotateY(180deg);
+  transform-origin: center top;
 }
 .firecrackers {
   width: 3.5rem;
@@ -110,7 +122,9 @@ export default {
   left: -(3.5rem / 2) - 0.3rem;
 }
 .firecrackers-r {
-  right: -(3.5rem / 2) - 0.5rem;
+  right: -(3.5rem / 2) - 0.3rem;
+  transform: rotateY(180deg);
+  transform-origin: center top;
 }
 </style>
 
