@@ -9,11 +9,6 @@
     <!-- 横幅 -->
     <div class="banner-box absolute">
       <img class="wh-100" src="../images/banner.png" alt>
-      <!-- 灯笼 -->
-      <div class="wh-100 absolute">
-        <img class="lantern lantern-l" src="../images/lantern-l.gif" alt>
-        <img class="lantern lantern-r" src="../images/lantern-l.gif" alt>
-      </div>
       <div class="banner-context width-100 absolute emblem">
         <span style="transform: rotateZ(-32deg) translate3d(0px, 0px, 0px);">你</span>
         <span style="transform: rotateZ(-24deg) translate3d(0px, 0px, 0px);">是</span>
@@ -24,6 +19,11 @@
         <span style="transform: rotateZ(16deg) translate3d(0px, 0px, 0px);">人</span>
         <span style="transform: rotateZ(24deg) translate3d(0px, 0px, 0px);">吗</span>
         <span style="transform: rotateZ(32deg) translate3d(0px, 0px, 0px);">?</span>
+      </div>
+      <!-- 灯笼 -->
+      <div class="wh-100 absolute">
+        <img class="lantern lantern-l" src="../images/lantern-l.gif" alt>
+        <img class="lantern lantern-r" src="../images/lantern-l.gif" alt>
       </div>
     </div>
     <!-- 刷脸开测 -->
@@ -38,7 +38,7 @@
 export default {
   methods: {
     toCamera() {
-      console.log('rererer')
+      console.log("rererer");
       this.$router.push("/camera");
     }
   }
@@ -48,8 +48,9 @@ export default {
 <style lang='scss' scoped>
 .banner-box {
   top: 1.5rem;
-  width: 100%;
+  width: 110%;
   height: 9rem / 2.48;
+  left: -5%;
 }
 .lantern {
   position: absolute;
@@ -80,7 +81,7 @@ export default {
 }
 
 .pig {
-  width: 7rem;
+  width: 83%;
   margin: auto;
   display: block;
 }
@@ -90,7 +91,7 @@ export default {
   margin: auto;
   display: block;
   position: absolute;
-  bottom: -1.1rem;
+  bottom: -0.9rem;
   left: 0;
   right: 0;
 }
@@ -131,16 +132,5 @@ export default {
   right: 0;
   top: 0;
   bottom: 0;
-}
-.banner-scale {
-  animation: mymove 1s infinite;
-}
-@keyframes mymove {
-  from {
-    transform: scale(1.1);
-  }
-  to {
-    transform: scale(1);
-  }
 }
 </style>

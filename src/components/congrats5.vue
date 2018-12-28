@@ -23,9 +23,9 @@ export default {};
 
  <style lang='scss' scoped>
 .xc {
-  width: 2.9rem;
+  width: 40%;
   display: inline-block;
-  margin: 0 auto 0.5rem;
+  margin: 0 auto 0.4rem;
   box-shadow: 0 0 0.5rem #ffffff;
 }
 .ck {
@@ -34,13 +34,15 @@ export default {};
 }
 .price {
   color: #b31d23;
-  margin: 0.4rem 0 0.3rem;
-  font-size: 1.2rem;
-  font-family: "Pm";
+  margin: 0.3rem 0 0.2rem;
+  font-size: 1rem;
+  // font-family: "Pm";
   font-style: italic;
+  font-weight: bold;
+  line-height: 1rem;
 }
 .price > .yuan {
-  font-size: 0.6rem;
+  font-size: 0.5rem;
   font-family: "Pm";
 }
 .pm {
@@ -48,12 +50,13 @@ export default {};
 }
 .zd {
   font-size: 0.5rem;
+  line-height: 0.5rem;
   margin-bottom: 0.3rem;
   color: #015883;
   font-style: italic;
 }
 .congrats2 {
-  padding-top: 1.38rem;
+  padding-top: 1rem;
   text-align: center;
 }
 .zhnl {

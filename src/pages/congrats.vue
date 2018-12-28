@@ -3,11 +3,11 @@
     <div class="addinfo-title">恭喜获得</div>
     <div class="info-box">
       <img class="info-bg wh-100" src="../images/info.png" alt>
-      <!-- <congrats1></congrats1> -->
+      <congrats1></congrats1>
       <!-- <congrats2></congrats2> -->
       <!-- <congrats3></congrats3> -->
       <!-- <congrats4></congrats4> -->
-      <congrats5></congrats5>
+      <!-- <congrats5></congrats5> -->
     </div>
     <!-- 福气榜单 -->
     <div class="btn-box-b">
@@ -59,8 +59,8 @@ export default {
   left: 0;
   right: 0;
   margin: auto;
-  width: 6.67rem;
-  height: (6.67 / 0.78) rem;
+  width: 76%;
+  height: 8.5rem;
 }
 
 .btn-box-b {

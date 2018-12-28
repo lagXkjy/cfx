@@ -1,6 +1,6 @@
 <template>
   <!-- 测试结果页 -->
-  <div class="wh-100 absolute">
+  <div class="wh-100 absolute" ref="cutScreen">
     <div class="result-box width-100 absolute">
       <div class="result-score width-100">56.8</div>
       <div class="echarts-box relative">
@@ -35,16 +35,12 @@
       <div class="result-context">
         <div class="result-text">年度最旺福气</div>
         <div class="result-f">眼福</div>
+        <div class="result-text">宝瓶座η流星雨不错过</div>
       </div>
     </div>
     <!-- 横幅 -->
     <div class="banner-box absolute">
       <img class="wh-100" src="../images/banner.png" alt>
-      <!-- 灯笼 -->
-      <div class="wh-100 absolute">
-        <img class="lantern lantern-l" src="../images/lantern-l.gif" alt>
-        <img class="lantern lantern-r" src="../images/lantern-l.gif" alt>
-      </div>
       <div class="banner-context width-100 absolute emblem">
         <span style="transform: rotateZ(-32deg) translate3d(0px, 0px, 0px);">已</span>
         <span style="transform: rotateZ(-24deg) translate3d(0px, 0px, 0px);">亥</span>
@@ -56,27 +52,88 @@
         <span style="transform: rotateZ(24deg) translate3d(0px, 0px, 0px);">指</span>
         <span style="transform: rotateZ(32deg) translate3d(0px, 0px, 0px);">数</span>
       </div>
+      <!-- 灯笼 -->
+      <div class="wh-100 absolute">
+        <img class="lantern lantern-l" src="../images/lantern-l.gif" alt>
+        <img class="lantern lantern-r" src="../images/lantern-l.gif" alt>
+      </div>
     </div>
-    <div class="f-code">
+    <div class="f-code" :class="{'is-save' :!isSave  }">
       <img src="../images/open.png" alt>
       <div>测一测你的福相</div>
     </div>
     <!-- 开福 -->
-    <div class="fd-box">
-      <div  class="fd-open"></div>
+    <div v-show="isSave" class="fd-box">
+      <div class="fd-open"></div>
       <div>根据福气值</div>
       <div>为您送上五芳福袋一个</div>
-      <div class="fd-save"></div>
+      <div @touchstart="touchSave" class="fd-save"></div>
     </div>
   </div>
 </template>
 
 <script>
+import html2canvas from "html2canvas";
 export default {
+  data() {
+    return {
+      timmer: null,
+      isSave: true
+    };
+  },
   mounted() {
     this.drawEcharts();
   },
   methods: {
+    touchSave() {
+      //长按保存
+      clearTimeout(this.timmer);
+      this.timmer = setTimeout(() => {
+        this.isSave = false;
+        this.doScreeenShots();
+      }, 1000);
+    },
+    doScreeenShots() {
+      const _this = this;
+      setTimeout(() => {
+        // 创建一个新的canvas
+        const _canvas = _this.$refs.cutScreen;
+        // 此处用于解决截图不清晰问题，将生成的canvas放大，然后再填充到原有的容器中就会清晰
+        const width = _canvas.offsetWidth;
+        const height = _canvas.offsetHeight;
+        const canvas2 = document.createElement("canvas");
+        const scale = 2;
+        canvas2.width = width * scale;
+        canvas2.height = height * scale;
+        const context1 = canvas2.getContext("2d");
+        if (context1) {
+          context1.scale(scale, scale);
+        }
+        const opts = {
+          scale,
+          canvas: canvas2,
+          // logging: true, //日志开关，便于查看html2canvas的内部执行流程
+          width,
+          height,
+          // 【重要】开启跨域配置
+          useCORS: true
+        };
+        html2canvas(_canvas, opts).then(canvas => {
+          const context = canvas2.getContext("2d");
+          if (context) {
+            context.scale(2, 2);
+            context.mozImageSmoothingEnabled = false;
+            context.webkitImageSmoothingEnabled = false;
+            context.imageSmoothingEnabled = false;
+          }
+          // canvas转换成url，然后利用a标签的download属性，直接下载，绕过上传服务器再下载
+          let a = document.createElement("a");
+          a.href = canvas.toDataURL();
+          a.download = "chart-download";
+          a.click();
+        });
+      }, 1000);
+    },
     drawEcharts() {
       //雷达图
       let myChart = this.$echarts.init(document.getElementById("resultchart"));
@@ -140,7 +197,7 @@ export default {
   top: 3rem;
 }
 .result-score {
-  font-size: 0.84rem;
+  font-size: 0.7rem;
   text-align: center;
   color: #00587f;
   font-weight: bold;
@@ -236,23 +293,26 @@ export default {
 .result-context {
   width: 100%;
   position: absolute;
-  top: 7.5rem;
+  top: 7rem;
   text-align: center;
 }
 .result-text {
   font-size: 0.36rem;
+  line-height: 0.36rem;
   color: #b31e23;
 }
 .result-f {
   font-size: 0.4rem;
+  line-height: 0.4rem;
   color: #00587f;
   margin: 0.18rem 0;
   font-family: "Pm";
 }
 .banner-box {
-  top: 1.5rem;
-  width: 100%;
+  top: 1.3rem;
+  width: 110%;
   height: 9rem / 2.48;
+  left: -5%;
 }
 .lantern {
   position: absolute;
@@ -327,6 +387,11 @@ export default {
   height: 1.69rem;
   background: url("../images/save.png") no-repeat;
   background-size: 100%;
+  margin: auto;
+}
+.is-save {
+  left: 0;
+  right: 0;
   margin: auto;
 }
 </style>

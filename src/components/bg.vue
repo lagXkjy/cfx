@@ -1,17 +1,17 @@
 <template>
-  <div class="wraper fixed wh-100">
+  <div id="my-wraper" class="wraper fixed wh-100">
     <img class="wh-100" src="../images/bg.png">
-    <div class="bg-box wh-100 absolute">
+    <div class="bg-box absolute">
       <div class="bg-border relative wh-100">
         <div class="bg-border-green absolute wh-100" style="overflow:hidden;">
-           <img class="bg-petal" src="../images/petal.gif" alt>
+          <img class="bg-petal" src="../images/petal.gif" alt>
         </div>
       </div>
     </div>
-    <div class="bg-box wh-100 absolute">
+    <div class="bg-box absolute">
       <img class="wh-100" src="../images/border.png" alt>
     </div>
-    <div class="bg-box wh-100 absolute">
+    <div class="bg-box absolute">
       <div class="bg-border-t relative wh-100">
         <div class="bg-border-green-t absolute wh-100">
           <!-- logo -->
@@ -37,7 +37,16 @@
 
 <script>
 export default {
-  components: {}
+  components: {},
+  mounted() {
+    let bgBox = document.getElementsByClassName("bg-box");
+    let wraper = document.getElementById("my-wraper");
+    console.log(bgBox);
+    for (let i = 0, len = bgBox.length; i < len; i++) {
+      bgBox[i].style.height = wraper.clientHeight + "px";
+      bgBox[i].style.width = wraper.clientHeight * 0.616 + 'px';
+    }
+  }
 };
 </script>
 
@@ -48,6 +57,13 @@ export default {
 .bg-box {
   z-index: 0;
   padding: 0.2rem;
+  height: 100vh;
+  width: 61.6vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
 }
 .bg-border {
   border: 0.58rem solid rgba(226, 202, 0, 0.8);
@@ -62,13 +78,13 @@ export default {
   border: 0.1rem solid rgba(0, 159, 71, 0);
 }
 .bg-happy {
-  width: 2.6rem;
+  width: 28%;
   position: absolute;
   top: 0.22rem;
   left: 0.18rem;
 }
 .bg-logo {
-  width: 3.2rem;
+  width: 35%;
   position: absolute;
   top: 0.15rem;
   left: 0;
@@ -76,7 +92,7 @@ export default {
   margin: auto;
 }
 .bg-newyear {
-  width: 2.6rem;
+  width: 28%;
   position: absolute;
   top: 0.22rem;
   right: 0.18rem;
@@ -88,7 +104,7 @@ export default {
   left: 0;
 }
 .bg-flower {
-  width: 3rem;
+  width: 33%;
   position: absolute;
   bottom: 0;
 }
@@ -101,7 +117,7 @@ export default {
   transform-origin: center top;
 }
 .bg-fish {
-  width: 3rem;
+  width: 33%;
   position: absolute;
   bottom: -0.34rem;
 }

@@ -3,12 +3,14 @@
     <img class="zhnl" src="../images/zhnl.png" alt>
     <div class="text-shadow pm">
       <div class="man">
-        满
-        <span>139</span>元
+        <span>满</span>
+        <span class="p-num">139</span>
+        <span>元</span>
       </div>
       <div class="jian">
-        减
-        <span>30</span>元
+        <span>减</span>
+        <span class="p-num">30</span>
+        <span>元</span>
       </div>
       <div class="yhq">优惠券</div>
     </div>
@@ -37,22 +39,22 @@ export default {};
 }
 .man {
   font-size: 0.8rem;
-  line-height: 1rem;
+  // line-height: 0.8rem;
 }
-.man > span {
+.man > .p-num {
   font-family: "Microsoft YaHei";
   font-weight: bold;
-  font-style: normal;
+  // font-style: normal;
   font-size: 1rem;
 }
 .jian {
   font-size: 0.8rem;
-   line-height: 1rem;
+  // line-height: 0.8rem;
 }
-.jian > span {
+.jian > .p-num {
   font-family: "Microsoft YaHei";
   font-weight: bold;
-  font-style: normal;
+  // font-style: normal;
   color: #de0d0d;
   font-size: 1rem;
 }
@@ -61,7 +63,7 @@ export default {};
   margin-bottom: 0.3rem;
 }
 .congrats2 {
-  padding-top: 1.38rem;
+  padding-top: 0.8rem;
   text-align: center;
 }
 .zhnl {
@@ -71,8 +73,9 @@ export default {};
 }
 .yhq {
   font-size: 0.6rem;
-  margin-bottom: 0.26rem;
-  margin-top: 0.2rem;
+  line-height: 0.6rem;
+  margin-bottom: 0.2rem;
+  margin-top: 0.1rem;
 }
 .quan {
   border: 0.09rem solid #00a64b;

@@ -53,8 +53,8 @@ export default {
   left: 0;
   right: 0;
   margin: auto;
-  width: 6.67rem;
-  height: (6.67 / 0.78) rem;
+  width: 76%;
+  height: 8.5rem;
 }
 .info-div {
   position: absolute;
@@ -62,7 +62,7 @@ export default {
   left: 0;
   right: 0;
   margin: auto;
-  width: 4.63rem;
+  width: 72%;
 }
 .info-div > .info-title {
   font-family: "Pm";

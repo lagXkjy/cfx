@@ -21,11 +21,11 @@ export default {};
 
  <style lang='scss' scoped>
 .ds-image {
-  width: 2.3rem;
+  width: 30%;
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 0.55rem;
+  bottom: 6%;
   margin: auto;
 }
 .ds {
@@ -50,7 +50,7 @@ export default {};
 }
 
 .congrats2 {
-  padding-top: 1.38rem;
+  padding-top: 1rem;
   text-align: center;
 }
 .zhnl {

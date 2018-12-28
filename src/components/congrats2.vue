@@ -4,12 +4,14 @@
     <div class="text-shadow pm">
       <div class="zd">指定产品</div>
       <div class="man">
-        满
-        <span>139</span>元
+        <span>满</span>
+        <span class="p-num">139</span>
+        <span>元</span>
       </div>
       <div class="jian">
-        减
-        <span>30</span>元
+        <span>减</span>
+        <span class="p-num">30</span>
+        <span>元</span>
       </div>
       <div class="yhq">优惠券</div>
     </div>
@@ -39,19 +41,19 @@ export default {};
 .man {
   font-size: 0.8rem;
 }
-.man > span {
+.man > .p-num {
   font-family: "Microsoft YaHei";
   font-weight: bold;
-  font-style: normal;
+  // font-style: normal;
   font-size: 1rem;
 }
 .jian {
   font-size: 0.8rem;
 }
-.jian > span {
+.jian > .p-num {
   font-family: "Microsoft YaHei";
   font-weight: bold;
-  font-style: normal;
+  // font-style: normal;
   color: #de0d0d;
   font-size: 1rem;
 }
@@ -60,7 +62,7 @@ export default {};
   margin-bottom: 0.3rem;
 }
 .congrats2 {
-  padding-top: 1.38rem;
+  padding-top: 1rem;
   text-align: center;
 }
 .zhnl {
