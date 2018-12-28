@@ -67,6 +67,7 @@
 </template>
 
 <script>
+import $request from "@utils/ranking.vue";
 export default {
   data() {
     return {
@@ -88,9 +89,15 @@ export default {
       ]
     };
   },
+  mounted() {
+    this.getList();
+  },
   methods: {
-    click() {
-      console.log(323233);
+    getList() { //获取列表
+      $request
+        .post("blessingList", {})
+        .then(res => {})
+        .catch(err => {});
     }
   }
 };
@@ -192,9 +199,10 @@ export default {
   background: #eccd00;
 }
 .banner-box {
-  top: 1.5rem;
-  width: 100%;
+  top: 1.3rem;
+  width: 110%;
   height: 9rem / 2.48;
+  left: -5%;
 }
 .lantern {
   position: absolute;

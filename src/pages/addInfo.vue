@@ -9,18 +9,18 @@
       <img class="info-bg wh-100" src="../images/info.png" alt>
       <div class="info-div">
         <div class="info-title">收件人</div>
-        <input type="text">
+        <input type="text" v-model="Name">
         <div class="info-border"></div>
         <div class="info-title">手机号</div>
-        <input type="text" maxlength="11">
+        <input type="text" maxlength="11" v-model="Phone">
         <div class="info-border"></div>
         <div class="info-title">寄件地址</div>
-        <textarea></textarea>
+        <textarea v-model="Site"></textarea>
         <div class="info-border"></div>
       </div>
     </div>
     <!-- 提交 -->
-    <div class="btn-box">
+    <div @click="submit" class="btn-box">
       <img class="btn-img" src="../images/btn-red.png" alt>
       <div class="btn-context wh-100 absolute flex justify-center align-center">提交</div>
     </div>
@@ -28,9 +28,18 @@
 </template>
 
 <script>
+import $request from '@utils/request'
 export default {
   methods:{
-    dFixed() {
+    submit(){
+      const data = {Name: this.Name, Phone:this.Phone, Site: this.Site, PrizeId: this.PrizeId}
+      $request.post('PostAddress', data)
+      .then(res => {
+
+      })
+      .catch(err => {
+        
+      })
     }
   }
 };

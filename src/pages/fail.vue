@@ -59,7 +59,7 @@
         <!-- <span style="transform: rotateZ(32deg) translate3d(0px, 0px, 0px);">数</span> -->
       </div>
     </div>
-    <!-- 刷脸开测 -->
+    <!-- 再测一次 -->
     <div @click="toTesting" class="btn-box">
       <img class="btn-img" src="../images/btn-green.png" alt>
       <div class="btn-context wh-100 absolute flex justify-center align-center">再测一次</div>
@@ -74,7 +74,7 @@ export default {
   },
   methods: {
     toTesting() {
-      this.$router.push("/testing");
+      this.$router.go(-2);
     },
     drawEcharts() {
       //雷达图
@@ -127,7 +127,7 @@ export default {
   top: 3rem;
 }
 .result-score {
-  font-size: 0.84rem;
+  font-size: 0.7rem;
   text-align: center;
   color: #00587f;
   font-weight: bold;
@@ -234,11 +234,11 @@ export default {
 .result-context {
   width: 100%;
   position: absolute;
-  top: 9rem;
+  top: 8rem;
   text-align: center;
 }
 .result-text {
-  font-size: 0.36rem;
+  font-size: 0.3rem;
   color: #b31e23;
 }
 .btn-box {
@@ -265,9 +265,10 @@ export default {
   letter-spacing: 0.04rem;
 }
 .banner-box {
-  top: 1.5rem;
-  width: 100%;
+  top: 1.3rem;
+  width: 110%;
   height: 9rem / 2.48;
+  left: -5%;
 }
 .lantern {
   position: absolute;

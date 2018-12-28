@@ -10,7 +10,7 @@
       <!-- <congrats5></congrats5> -->
     </div>
     <!-- 福气榜单 -->
-    <div class="btn-box-b">
+    <div @click="myShare" class="btn-box-b">
       <img class="btn-img" src="../images/btn-green.png" alt>
       <div class="btn-context wh-100 absolute flex justify-center align-center">比拼福气</div>
     </div>
@@ -30,6 +30,8 @@ import congrats3 from "../components/congrats3.vue";
 import congrats4 from "../components/congrats4.vue";
 import congrats5 from "../components/congrats5.vue";
 import tmall from "../components/tmall.vue";
+import wx from "weixin-js-sdk";
+import request from "@/utils/request";
 export default {
   components: {
     congrats1,
@@ -38,6 +40,65 @@ export default {
     congrats4,
     congrats5,
     tmall
+  },
+  mounted() {
+    wx.ready(() => {
+      wx.updateAppMessageShareData({
+        title: "测福相", // 分享标题
+        desc: "测测你的福相", // 分享描述
+        link:  window.location.href.split('#')[0], // 分享链接
+        imgUrl: "", // 分享图标
+        type: "", // 分享类型,music、video或link，不填默认为link
+        dataUrl: "", // 如果type是music或video，则要提供数据链接，默认为空
+        success: function() {
+          // 用户确认分享后执行的回调函数
+          alert('分享成功')
+        },
+        cancel: function() {
+          // 用户取消分享后执行的回调函数
+          alert('分享失败')
+        }
+      });
+      // wx.onMenuShareTimeline({
+      //   title: shareTitle, // 分享标题
+      //   link: shareUrl,
+      //   imgUrl: imgUrl, // 分享图标
+      //   success: function() {
+      //     // 用户确认分享后执行的回调函数
+      //   },
+      //   cancel: function() {
+      //     // 用户取消分享后执行的回调函数
+      //   }
+      // });
+    });
+    wx.error(function(res) {
+      //通过error接口处理失败验证
+      alert('接口' + JSON.stringify(res))
+    });
+  },
+  methods: {
+    myShare() {
+      //分享按钮
+      console.log(location.href);
+      request
+        .post("ConfigParams", {})
+        .then(res => {
+          //接口入住权限验证配置
+          wx.config({
+            debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+
+            appId: 'wxf922ce057955c917', // 必填，公众号的唯一标识
+            timestamp: res.timestamp, // 必填，生成签名的时间戳
+            nonceStr: res.nonceStr, // 必填，生成签名的随机串
+            signature: res.signature, // 必填，签名，见附录1
+            jsApiList: ["updateAppMessageShareData", "updateTimelineShareData"] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+          });
+        })
+        .catch(res => {
+          console.log(res)
+          alert('接口' + JSON.stringify(res))
+        })
+    }
   }
 };
 </script>
