@@ -5,6 +5,7 @@ Vue.use(VueRouter)
 const getComponent = str => res => require([`@/pages/${str}`], res)
 
 export default new VueRouter({
+    base: '/cfx/',
     routes: [
         { path: '/', component: getComponent('home') },
         { path: '/home', component: getComponent('home') },
