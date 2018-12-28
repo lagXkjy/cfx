@@ -63,10 +63,10 @@
     </div>
     <!-- 开福 -->
     <div class="fd-box">
-      <img class="fd-open" src="../images/open.png" alt>
+      <div  class="fd-open"></div>
       <div>根据福气值</div>
       <div>为您送上五芳福袋一个</div>
-      <img class="fd-save" src="../images/save.png" alt>
+      <div class="fd-save"></div>
     </div>
   </div>
 </template>
@@ -251,8 +251,7 @@ export default {
 }
 .banner-box {
   top: 1.5rem;
-  left: -0.5rem;
-  width: 10rem;
+  width: 100%;
   height: 9rem / 2.48;
 }
 .lantern {
@@ -314,6 +313,10 @@ export default {
 }
 .fd-open {
   width: 2.34rem;
+  height: 2.34rem;
+  background: url("../images/open.png") no-repeat;
+  background-size: 100%;
+  margin: auto;
 }
 .fd-box > div {
   font-size: 0.22rem;
@@ -321,5 +324,9 @@ export default {
 }
 .fd-save {
   width: 4rem;
+  height: 1.69rem;
+  background: url("../images/save.png") no-repeat;
+  background-size: 100%;
+  margin: auto;
 }
 </style>

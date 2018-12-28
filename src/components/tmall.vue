@@ -1,7 +1,7 @@
 <template>
   <div class="tmall">
     <div class="kuang-box">
-      <img class="kuang" src="../images/kuang.png" alt>
+      <img class="kuang" src="../images/kuang.jpg" alt>
       <div class="kuang-content flex justify-center align-center flex-direction">
         <div class="kl">淘口令</div>
         <div class="kl-border">
@@ -12,7 +12,7 @@
         <div class="kuang-t">打开淘宝/天猫App即可使用</div>
       </div>
     </div>
-    <img class="close" src="../images/close.png" alt>
+    <div class="close"></div>
   </div>
 </template>
 <script>
@@ -26,7 +26,7 @@ export default {};
   color: #ffffff;
   font-size: 0.3rem;
   line-height: 0.3rem;
-  padding: 0.2rem;
+  padding: 0.18rem 0.3rem;
   border-radius: 0.1rem;
   background: #ff0000;
   margin-bottom: 0.3rem;
@@ -82,6 +82,8 @@ export default {};
   width: 0.7rem;
   height: 0.7rem;
   margin-top: 0.3rem;
+  background: url("../images/close.png") no-repeat;
+  background-size: 100%;
 }
 </style>
 

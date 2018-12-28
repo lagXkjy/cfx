@@ -193,8 +193,7 @@ export default {
 }
 .banner-box {
   top: 1.5rem;
-  left: -0.5rem;
-  width: 10rem;
+  width: 100%;
   height: 9rem / 2.48;
 }
 .lantern {

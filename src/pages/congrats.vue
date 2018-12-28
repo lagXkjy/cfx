@@ -19,7 +19,7 @@
       <img class="btn-img" src="../images/btn-green.png" alt>
       <div class="btn-context wh-100 absolute flex justify-center align-center">福气榜单</div>
     </div>
-    <tmall></tmall>
+    <!-- <tmall></tmall> -->
   </div>
 </template>
 
