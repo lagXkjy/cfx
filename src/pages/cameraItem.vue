@@ -26,8 +26,8 @@ export default {
     data(){
         return{
             video: '',
-            showPhoto: navigator.mediaDevices.getUserMedia === undefined ? false : true,
-            //showPhoto: false,
+            //showPhoto: navigator.mediaDevices.getUserMedia === undefined ? false : true,
+            showPhoto: false,
             notice: navigator.mediaDevices.getUserMedia === undefined ? '请点击下面按钮自拍照片' : '请将脸部对准扫描框并拍照'
         }
     },

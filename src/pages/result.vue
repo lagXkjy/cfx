@@ -1,370 +1,398 @@
 <template>
-  <!-- 测试结果页 -->
-  <div class="wh-100 absolute">
-    <createImage @successCreateImg="successCreateImg"></createImage>
-    <div class="result-box width-100 absolute">
-      <div class="result-score width-100">56.8</div>
-      <div class="echarts-box relative">
-        <div id="resultchart" class="wh-100"></div>
-        <!-- 五福 -->
-        <div class="echarts-f echarts-f-1">
-          <div class="echarts-f-s"></div>
-          <span>眼福</span>
-          <div class="echarts-num">78</div>
+    <!-- 测试结果页 -->
+    <div class="wh-100 absolute">
+        <createImage @successCreateImg="successCreateImg"></createImage>
+        <div class="result-box width-100 absolute">
+            <div class="result-score width-100">56.8</div>
+            <div class="echarts-box relative">
+                <div id="resultchart" class="wh-100"></div>
+
+
+
+                <!-- 五福 -->
+                <div class="echarts-f echarts-f-1">
+                    <div class="echarts-f-s"></div>
+                    <span>眼福</span>
+                    <div class="echarts-num">78</div>
+                </div>
+                <div class="echarts-f echarts-f-2">
+                    <div class="echarts-f-s"></div>
+                    <span>艳福</span>
+                    <div class="echarts-num">78</div>
+                </div>
+                <div class="echarts-f echarts-f-3">
+                    <div class="echarts-f-s"></div>
+                    <span>耳福</span>
+                    <div class="echarts-num">78</div>
+                </div>
+                <div class="echarts-f echarts-f-4">
+                    <div class="echarts-f-s"></div>
+                    <span>口福</span>
+                    <div class="echarts-num">78</div>
+                </div>
+                <div class="echarts-f echarts-f-5">
+                    <div class="echarts-f-s"></div>
+                    <span>清福</span>
+                    <div class="echarts-num">78</div>
+                </div>
+            </div>
+            <div class="result-context">
+                <div class="result-text">年度最旺福气</div>
+                <div class="result-f">眼福</div>
+                <div class="result-text">宝瓶座η流星雨不错过</div>
+            </div>
         </div>
-        <div class="echarts-f echarts-f-2">
-          <div class="echarts-f-s"></div>
-          <span>艳福</span>
-          <div class="echarts-num">78</div>
+        <!-- 横幅 -->
+        <div class="banner-box absolute">
+            <img class="wh-100" src="../images/banner.png" alt>
+            <div class="banner-context width-100 absolute emblem">
+                <span style="transform: rotateZ(-33deg) translate3d(0px, 0px, 0px);">已</span>
+                <span style="transform: rotateZ(-27deg) translate3d(0px, 0px, 0px);">亥</span>
+                <span style="transform: rotateZ(-21deg) translate3d(0px, 0px, 0px);">年</span>
+                <span
+                    class="banner-you"
+                    style="transform: rotateZ(-15deg) translate3d(0px, 0px, 0px);"
+                >清</span>
+                <span
+                    class="banner-you"
+                    style="transform: rotateZ(-11deg) translate3d(0px, 0px, 0px);"
+                >明</span>
+                <span
+                    class="banner-you"
+                    style="transform: rotateZ(-7deg) translate3d(0px, 0px, 0px);"
+                >上</span>
+                <span
+                    class="banner-you"
+                    style="transform: rotateZ(-3deg) translate3d(0px, 0px, 0px);"
+                >河</span>
+                <span
+                    class="banner-you"
+                    style="transform: rotateZ(1deg) translate3d(0px, 0px, 0px);"
+                >图</span>
+                <span
+                    class="banner-you"
+                    style="transform: rotateZ(4deg) translate3d(0px, 0px, 0px);"
+                >...</span>
+                <span style="transform: rotateZ(9deg) translate3d(0px, 0px, 0px);">的</span>
+                <span style="transform: rotateZ(15deg) translate3d(0px, 0px, 0px);">福</span>
+                <span style="transform: rotateZ(21deg) translate3d(0px, 0px, 0px);">气</span>
+                <span style="transform: rotateZ(27deg) translate3d(0px, 0px, 0px);">指</span>
+                <span style="transform: rotateZ(33deg) translate3d(0px, 0px, 0px);">数</span>
+            </div>
+            <!-- 灯笼 -->
+            <div class="wh-100 absolute">
+                <img class="lantern lantern-l" src="../images/lantern-l.gif" alt>
+                <img class="lantern lantern-r" src="../images/lantern-l.gif" alt>
+            </div>
         </div>
-        <div class="echarts-f echarts-f-3">
-          <div class="echarts-f-s"></div>
-          <span>耳福</span>
-          <div class="echarts-num">78</div>
+        <!-- 开福 -->
+        <div class="fd-box">
+            <div class="fd-open"></div>
+            <div>根据福气值</div>
+            <div>为您送上五芳福袋一个</div>
+            <div class="fd-save"></div>
         </div>
-        <div class="echarts-f echarts-f-4">
-          <div class="echarts-f-s"></div>
-          <span>口福</span>
-          <div class="echarts-num">78</div>
-        </div>
-        <div class="echarts-f echarts-f-5">
-          <div class="echarts-f-s"></div>
-          <span>清福</span>
-          <div class="echarts-num">78</div>
-        </div>
-      </div>
-      <div class="result-context">
-        <div class="result-text">年度最旺福气</div>
-        <div class="result-f">眼福</div>
-        <div class="result-text">宝瓶座η流星雨不错过</div>
-      </div>
+        <!-- 长按保存图片 -->
+        <img v-if="image" class="cImage" :src="image" alt>
+        <div @click="kfd" class="fd-open fd-z-img opacity-0"></div>
     </div>
-    <!-- 横幅 -->
-    <div class="banner-box absolute">
-      <img class="wh-100" src="../images/banner.png" alt>
-      <div class="banner-context width-100 absolute emblem">
-        <span style="transform: rotateZ(-33deg) translate3d(0px, 0px, 0px);">已</span>
-        <span style="transform: rotateZ(-27deg) translate3d(0px, 0px, 0px);">亥</span>
-        <span style="transform: rotateZ(-21deg) translate3d(0px, 0px, 0px);">年</span>
-        <span class="banner-you" style="transform: rotateZ(-15deg) translate3d(0px, 0px, 0px);">清</span>
-        <span class="banner-you" style="transform: rotateZ(-11deg) translate3d(0px, 0px, 0px);">明</span>
-        <span class="banner-you" style="transform: rotateZ(-7deg) translate3d(0px, 0px, 0px);">上</span>
-        <span class="banner-you" style="transform: rotateZ(-3deg) translate3d(0px, 0px, 0px);">河</span>
-        <span class="banner-you" style="transform: rotateZ(1deg) translate3d(0px, 0px, 0px);">图</span>
-        <span class="banner-you" style="transform: rotateZ(4deg) translate3d(0px, 0px, 0px);">...</span>
-        <span style="transform: rotateZ(9deg) translate3d(0px, 0px, 0px);">的</span>
-        <span style="transform: rotateZ(15deg) translate3d(0px, 0px, 0px);">福</span>
-        <span style="transform: rotateZ(21deg) translate3d(0px, 0px, 0px);">气</span>
-        <span style="transform: rotateZ(27deg) translate3d(0px, 0px, 0px);">指</span>
-        <span style="transform: rotateZ(33deg) translate3d(0px, 0px, 0px);">数</span>
-      </div>
-      <!-- 灯笼 -->
-      <div class="wh-100 absolute">
-        <img class="lantern lantern-l" src="../images/lantern-l.gif" alt>
-        <img class="lantern lantern-r" src="../images/lantern-l.gif" alt>
-      </div>
-    </div>
-    <!-- 开福 -->
-    <div class="fd-box">
-      <div class="fd-open"></div>
-      <div>根据福气值</div>
-      <div>为您送上五芳福袋一个</div>
-      <div class="fd-save"></div>
-    </div>
-    <!-- 长按保存图片 -->
-    <img v-if="image" class="cImage" :src="image" alt>
-    <div @click="kfd" class="fd-open fd-z-img opacity-0"></div>
-  </div>
 </template>
 
 <script>
 import createImage from "../components/createImage";
 import html2canvas from "html2canvas";
 export default {
-  components: {
-    createImage
-  },
-  data() {
-    return {
-      image: ""
-    };
-  },
-  mounted() {
-    this.drawEcharts();
-  },
-  methods: {
-    kfd() {
-      //开福袋点击事件
-      console.log(23233);
+    components: {
+        createImage
     },
-    successCreateImg(e) {
-      //图片生成成功了
-      this.image = e;
+    data() {
+        function initData(){
+            return ''
+        }
+
+        return {
+            image: "",
+            radarOptions:{
+                color: "green",
+                tooltip: {},
+                radar: {
+                    name: {
+                        textStyle: {
+                            color: "#fff",
+                            backgroundColor: "#999",
+                            borderRadius: 3,
+                            padding: [3, 5]
+                        }
+                    },
+                    indicator: [
+                        { max: 100 },
+                        { max: 100 },
+                        { max: 100 },
+                        { max: 100 },
+                        { max: 100 }
+                    ],
+                    axisLine: {
+                        //坐标轴线相关设置
+                        show: true,
+                        lineStyle: {
+                            color: "#ddb828"
+                        }
+                    },
+                    splitLine: {
+                        show: true,
+                        lineStyle: {
+                            color: "#ddb828" // 图表背景网格线的颜色
+                        }
+                    },
+                    splitArea: {
+                        // 图表背景网格的颜色
+                        show: false
+                    }
+                },
+                series: [
+                    {
+                        symbol: "none", //去掉拐点
+                        name: "预算 vs 开销（Budget vs spending）",
+                        type: "radar",
+                        data: [
+                            {
+                                value: [10, 20, 30, 40, 50]
+                            }
+                        ]
+                    }
+                ]
+            }
+        };
     },
-    drawEcharts() {
-      //雷达图
-      let myChart = this.$echarts.init(document.getElementById("resultchart"));
-      myChart.setOption({
-        color: "green",
-        tooltip: {},
-        radar: {
-          name: {
-            textStyle: {
-              color: "#fff",
-              backgroundColor: "#999",
-              borderRadius: 3,
-              padding: [3, 5]
-            }
-          },
-          indicator: [
-            { max: 100 },
-            { max: 100 },
-            { max: 100 },
-            { max: 100 },
-            { max: 100 }
-          ],
-          axisLine: {
-            //坐标轴线相关设置
-            show: true,
-            lineStyle: {
-              color: "#ddb828"
-            }
-          },
-          splitLine: {
-            show: true,
-            lineStyle: {
-              color: "#ddb828" // 图表背景网格线的颜色
-            }
-          },
-          splitArea: {
-            // 图表背景网格的颜色
-            show: false
-          }
+    mounted() {
+        this.drawEcharts();
+    },
+    methods: {
+        kfd() {
+            //开福袋点击事件
+            console.log(23233);
         },
-        series: [
-          {
-            symbol: "none", //去掉拐点
-            name: "预算 vs 开销（Budget vs spending）",
-            type: "radar",
-            data: [
-              {
-                value: [10, 20, 30, 40, 50]
-              }
-            ]
-          }
-        ]
-      });
+        successCreateImg(e) {
+            //图片生成成功了
+            this.image = e;
+        },
+        drawEcharts() {
+            //雷达图
+            let myChart = this.$echarts.init(
+                document.getElementById("resultchart")
+            );
+            myChart.setOption(this.radarOptions);
+        }
     }
-  }
 };
 </script>
 
 <style lang='scss' scoped>
 .cImage {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  bottom: -0.9rem;
-  left: 0;
-  z-index: 1;
-  opacity: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    bottom: -0.9rem;
+    left: 0;
+    z-index: 1;
+    opacity: 0;
 }
 .opacity-0 {
-  opacity: 0;
+    opacity: 0;
 }
 .result-box {
-  top: 3rem;
+    top: 3rem;
 }
 .result-score {
-  font-size: 0.7rem;
-  text-align: center;
-  color: #00587f;
-  font-weight: bold;
-  text-shadow: 0 0 0.1rem #e8c92d;
+    font-size: 0.7rem;
+    text-align: center;
+    color: #00587f;
+    font-weight: bold;
+    text-shadow: 0 0 0.1rem #e8c92d;
 }
 .echarts-box {
-  width: 7rem;
-  height: 7rem;
-  margin: 0.2rem auto 0;
+    width: 7rem;
+    height: 7rem;
+    margin: 0.2rem auto 0;
 }
 .echarts-f {
-  position: absolute;
-  width: 0.9rem;
-  height: 0.9rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: "Pm";
-  color: #e5d4bb;
-  font-size: 0.34rem;
+    position: absolute;
+    width: 0.9rem;
+    height: 0.9rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Pm";
+    color: #e5d4bb;
+    font-size: 0.34rem;
 }
 .echarts-f-s {
-  width: 100%;
-  height: 100%;
-  background: #ce2420;
-  transform: rotateZ(45deg);
-  position: absolute;
-  top: 0;
-  left: 0;
-  //   z-index: -1;
+    width: 100%;
+    height: 100%;
+    background: #ce2420;
+    transform: rotateZ(45deg);
+    position: absolute;
+    top: 0;
+    left: 0;
+    //   z-index: -1;
 }
 .echarts-f > .echarts-num {
-  position: absolute;
-  font-size: 0.24rem;
-  color: #00587f;
-  font-style: italic;
-  font-family: "Microsoft YaHei";
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    position: absolute;
+    font-size: 0.24rem;
+    color: #00587f;
+    font-style: italic;
+    font-family: "Microsoft YaHei";
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .echarts-f > span {
-  position: relative;
-  top: 0;
-  left: 0;
+    position: relative;
+    top: 0;
+    left: 0;
 }
 .echarts-f-1 {
-  top: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
 }
 .echarts-f-1 > .echarts-num {
-  bottom: -0.9rem;
-  left: 0;
-  right: 0;
-  margin: auto;
+    bottom: -0.9rem;
+    left: 0;
+    right: 0;
+    margin: auto;
 }
 .echarts-f-2 {
-  top: 2.1rem;
-  left: 0.5rem;
+    top: 2.1rem;
+    left: 0.5rem;
 }
 .echarts-f-2 > .echarts-num {
-  top: 0rem;
-  left: 1rem;
+    top: 0rem;
+    left: 1rem;
 }
 .echarts-f-3 {
-  bottom: 0.8rem;
-  left: 1.5rem;
+    bottom: 0.8rem;
+    left: 1.5rem;
 }
 .echarts-f-3 > .echarts-num {
-  bottom: 0.6rem;
-  left: 0.6rem;
+    bottom: 0.6rem;
+    left: 0.6rem;
 }
 .echarts-f-4 {
-  bottom: 0.8rem;
-  right: 1.5rem;
+    bottom: 0.8rem;
+    right: 1.5rem;
 }
 .echarts-f-4 > .echarts-num {
-  bottom: 0.6rem;
-  right: 0.6rem;
+    bottom: 0.6rem;
+    right: 0.6rem;
 }
 .echarts-f-5 {
-  top: 2.1rem;
-  right: 0.5rem;
+    top: 2.1rem;
+    right: 0.5rem;
 }
 .echarts-f-5 > .echarts-num {
-  top: 0;
-  right: 0.9rem;
+    top: 0;
+    right: 0.9rem;
 }
 .result-context {
-  width: 100%;
-  position: absolute;
-  top: 7rem;
-  text-align: center;
+    width: 100%;
+    position: absolute;
+    top: 7rem;
+    text-align: center;
 }
 .result-text {
-  font-size: 0.36rem;
-  line-height: 0.36rem;
-  color: #b31e23;
+    font-size: 0.36rem;
+    line-height: 0.36rem;
+    color: #b31e23;
 }
 .result-f {
-  font-size: 0.4rem;
-  line-height: 0.4rem;
-  color: #00587f;
-  margin: 0.18rem 0;
-  font-family: "Pm";
+    font-size: 0.4rem;
+    line-height: 0.4rem;
+    color: #00587f;
+    margin: 0.18rem 0;
+    font-family: "Pm";
 }
 .banner-box {
-  top: 1.3rem;
-  width: 110%;
-  height: 9rem / 2.48;
-  left: -5%;
+    top: 1.3rem;
+    width: 110%;
+    height: 9rem / 2.48;
+    left: -5%;
 }
 .lantern {
-  position: absolute;
-  top: (9rem / 2.48 / 2) - 0.2rem;
-  width: 2.9rem;
+    position: absolute;
+    top: (9rem / 2.48 / 2) - 0.2rem;
+    width: 2.9rem;
 }
 
 .lantern-l {
-  left: 0.15rem;
+    left: 0.15rem;
 }
 
 .lantern-r {
-  right: 0.15rem;
-  transform: rotateY(180deg);
-  transform-origin: center top;
+    right: 0.15rem;
+    transform: rotateY(180deg);
+    transform-origin: center top;
 }
 
 .banner-context {
-  color: #ffffff;
-  font-size: 0.6rem;
-  font-family: "Pm";
-  text-align: center;
-  top: 0.4rem;
+    color: #ffffff;
+    font-size: 0.6rem;
+    font-family: "Pm";
+    text-align: center;
+    top: 0.4rem;
 }
 .banner-you {
-  font-size: 0.35rem;
-  line-height: 0.6rem;
-  color: #fff000;
+    font-size: 0.35rem;
+    line-height: 0.6rem;
+    color: #fff000;
 }
 .emblem {
-  position: absolute;
-  height: 11rem;
+    position: absolute;
+    height: 11rem;
 }
 
 .emblem span {
-  position: absolute;
-  display: inline-block;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
+    position: absolute;
+    display: inline-block;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
 }
 .fd-box {
-  position: absolute;
-  left: 0;
-  bottom: -0.9rem;
-  width: 100%;
-  text-align: center;
+    position: absolute;
+    left: 0;
+    bottom: -0.9rem;
+    width: 100%;
+    text-align: center;
 }
 .fd-open {
-  width: 2.34rem;
-  height: 2.34rem;
-  background: url("../images/open.png") no-repeat;
-  background-size: 100%;
-  margin: auto;
+    width: 2.34rem;
+    height: 2.34rem;
+    background: url("../images/open.png") no-repeat;
+    background-size: 100%;
+    margin: auto;
 }
 .fd-box > div {
-  font-size: 0.22rem;
-  color: #00587f;
+    font-size: 0.22rem;
+    color: #00587f;
 }
 .fd-save {
-  width: 4rem;
-  height: 1.69rem;
-  background: url("../images/save.png") no-repeat;
-  background-size: 100%;
-  margin: auto;
+    width: 4rem;
+    height: 1.69rem;
+    background: url("../images/save.png") no-repeat;
+    background-size: 100%;
+    margin: auto;
 }
 .fd-z-img {
-  position: absolute;
-  bottom: 1.44rem;
-  left: 0;
-  right: 0;
-  margin: auto;
-  z-index: 2;
+    position: absolute;
+    bottom: 1.44rem;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: 2;
 }
 </style>

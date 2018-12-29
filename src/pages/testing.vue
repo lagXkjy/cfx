@@ -45,11 +45,18 @@ export default {
         //         }).catch(err => {JSON.stringify(err)})
         //     }
         // }).catch(err => {alert(err)})
+        alert(sessionStorage.getItem('img64'))
         request.post('UploadImg' ,{postFile: encodeURIComponent(sessionStorage.getItem('img64'))}).then(res => {
             alert(JSON.stringify(res))
             if(res.Status == true){
                 request.post('Testface' ,{imgpath: res.Results}).then(resp => {
                     alert(JSON.stringify(resp))
+                    if(resp.res){
+                        sessionStorage.setItem('NickName' ,resp.NickName)
+                        this.$router.push({
+                            path: '/result'
+                        })
+                    }
                 }).catch(err => {JSON.stringify(err)})
             }
         }).catch(err => {alert(err)})
