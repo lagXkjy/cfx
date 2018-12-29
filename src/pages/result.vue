@@ -1,6 +1,7 @@
 <template>
   <!-- 测试结果页 -->
-  <div class="wh-100 absolute" ref="cutScreen">
+  <div class="wh-100 absolute">
+    <createImage @successCreateImg="successCreateImg"></createImage>
     <div class="result-box width-100 absolute">
       <div class="result-score width-100">56.8</div>
       <div class="echarts-box relative">
@@ -42,15 +43,20 @@
     <div class="banner-box absolute">
       <img class="wh-100" src="../images/banner.png" alt>
       <div class="banner-context width-100 absolute emblem">
-        <span style="transform: rotateZ(-32deg) translate3d(0px, 0px, 0px);">已</span>
-        <span style="transform: rotateZ(-24deg) translate3d(0px, 0px, 0px);">亥</span>
-        <span style="transform: rotateZ(-16deg) translate3d(0px, 0px, 0px);">年</span>
-        <span style="transform: rotateZ(-8deg) translate3d(0px, 0px, 0px);">您</span>
-        <span style="transform: rotateZ(0deg) translate3d(0px, 0px, 0px);">的</span>
-        <span style="transform: rotateZ(8deg) translate3d(0px, 0px, 0px);">福</span>
-        <span style="transform: rotateZ(16deg) translate3d(0px, 0px, 0px);">气</span>
-        <span style="transform: rotateZ(24deg) translate3d(0px, 0px, 0px);">指</span>
-        <span style="transform: rotateZ(32deg) translate3d(0px, 0px, 0px);">数</span>
+        <span style="transform: rotateZ(-33deg) translate3d(0px, 0px, 0px);">已</span>
+        <span style="transform: rotateZ(-27deg) translate3d(0px, 0px, 0px);">亥</span>
+        <span style="transform: rotateZ(-21deg) translate3d(0px, 0px, 0px);">年</span>
+        <span class="banner-you" style="transform: rotateZ(-15deg) translate3d(0px, 0px, 0px);">清</span>
+        <span class="banner-you" style="transform: rotateZ(-11deg) translate3d(0px, 0px, 0px);">明</span>
+        <span class="banner-you" style="transform: rotateZ(-7deg) translate3d(0px, 0px, 0px);">上</span>
+        <span class="banner-you" style="transform: rotateZ(-3deg) translate3d(0px, 0px, 0px);">河</span>
+        <span class="banner-you" style="transform: rotateZ(1deg) translate3d(0px, 0px, 0px);">图</span>
+        <span class="banner-you" style="transform: rotateZ(4deg) translate3d(0px, 0px, 0px);">...</span>
+        <span style="transform: rotateZ(9deg) translate3d(0px, 0px, 0px);">的</span>
+        <span style="transform: rotateZ(15deg) translate3d(0px, 0px, 0px);">福</span>
+        <span style="transform: rotateZ(21deg) translate3d(0px, 0px, 0px);">气</span>
+        <span style="transform: rotateZ(27deg) translate3d(0px, 0px, 0px);">指</span>
+        <span style="transform: rotateZ(33deg) translate3d(0px, 0px, 0px);">数</span>
       </div>
       <!-- 灯笼 -->
       <div class="wh-100 absolute">
@@ -58,81 +64,42 @@
         <img class="lantern lantern-r" src="../images/lantern-l.gif" alt>
       </div>
     </div>
-    <div class="f-code" :class="{'is-save' :!isSave  }">
-      <img src="../images/open.png" alt>
-      <div>测一测你的福相</div>
-    </div>
     <!-- 开福 -->
-    <div v-show="isSave" class="fd-box">
+    <div class="fd-box">
       <div class="fd-open"></div>
       <div>根据福气值</div>
       <div>为您送上五芳福袋一个</div>
-      <div @touchstart="touchSave" class="fd-save"></div>
+      <div class="fd-save"></div>
     </div>
+    <!-- 长按保存图片 -->
+    <img v-if="image" class="cImage" :src="image" alt>
+    <div @click="kfd" class="fd-open fd-z-img opacity-0"></div>
   </div>
 </template>
 
 <script>
+import createImage from "../components/createImage";
 import html2canvas from "html2canvas";
 export default {
+  components: {
+    createImage
+  },
   data() {
     return {
-      timmer: null,
-      isSave: true
+      image: ""
     };
   },
   mounted() {
     this.drawEcharts();
   },
   methods: {
-    touchSave() {
-      //长按保存
-      clearTimeout(this.timmer);
-      this.timmer = setTimeout(() => {
-        this.isSave = false;
-        this.doScreeenShots();
-      }, 1000);
+    kfd() {
+      //开福袋点击事件
+      console.log(23233);
     },
-    doScreeenShots() {
-      const _this = this;
-      setTimeout(() => {
-        // 创建一个新的canvas
-        const _canvas = _this.$refs.cutScreen;
-        // 此处用于解决截图不清晰问题，将生成的canvas放大，然后再填充到原有的容器中就会清晰
-        const width = _canvas.offsetWidth;
-        const height = _canvas.offsetHeight;
-        const canvas2 = document.createElement("canvas");
-        const scale = 2;
-        canvas2.width = width * scale;
-        canvas2.height = height * scale;
-        const context1 = canvas2.getContext("2d");
-        if (context1) {
-          context1.scale(scale, scale);
-        }
-        const opts = {
-          scale,
-          canvas: canvas2,
-          // logging: true, //日志开关，便于查看html2canvas的内部执行流程
-          width,
-          height,
-          // 【重要】开启跨域配置
-          useCORS: true
-        };
-        html2canvas(_canvas, opts).then(canvas => {
-          const context = canvas2.getContext("2d");
-          if (context) {
-            context.scale(2, 2);
-            context.mozImageSmoothingEnabled = false;
-            context.webkitImageSmoothingEnabled = false;
-            context.imageSmoothingEnabled = false;
-          }
-          // canvas转换成url，然后利用a标签的download属性，直接下载，绕过上传服务器再下载
-          let a = document.createElement("a");
-          a.href = canvas.toDataURL();
-          a.download = "chart-download";
-          a.click();
-        });
-      }, 1000);
+    successCreateImg(e) {
+      //图片生成成功了
+      this.image = e;
     },
     drawEcharts() {
       //雷达图
@@ -193,6 +160,18 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+.cImage {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  bottom: -0.9rem;
+  left: 0;
+  z-index: 1;
+  opacity: 0;
+}
+.opacity-0 {
+  opacity: 0;
+}
 .result-box {
   top: 3rem;
 }
@@ -332,12 +311,16 @@ export default {
 
 .banner-context {
   color: #ffffff;
-  font-size: 0.66rem;
+  font-size: 0.6rem;
   font-family: "Pm";
   text-align: center;
   top: 0.4rem;
 }
-
+.banner-you {
+  font-size: 0.35rem;
+  line-height: 0.6rem;
+  color: #fff000;
+}
 .emblem {
   position: absolute;
   height: 11rem;
@@ -350,19 +333,6 @@ export default {
   right: 0;
   top: 0;
   bottom: 0;
-}
-.f-code {
-  position: absolute;
-  right: 0;
-  bottom: 0.14rem;
-  text-align: center;
-}
-.f-code > img {
-  width: 2rem;
-}
-.f-code > div {
-  font-size: 0.3rem;
-  color: #000;
 }
 .fd-box {
   position: absolute;
@@ -389,9 +359,12 @@ export default {
   background-size: 100%;
   margin: auto;
 }
-.is-save {
+.fd-z-img {
+  position: absolute;
+  bottom: 1.44rem;
   left: 0;
   right: 0;
   margin: auto;
+  z-index: 2;
 }
 </style>

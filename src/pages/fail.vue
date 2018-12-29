@@ -42,21 +42,20 @@
     <!-- 横幅 -->
     <div class="banner-box absolute">
       <img class="wh-100" src="../images/banner.png" alt>
+      <div class="banner-context width-100 absolute emblem">
+        <span style="transform: rotateZ(-28deg) translate3d(0px, 0px, 0px);">您</span>
+        <span style="transform: rotateZ(-20deg) translate3d(0px, 0px, 0px);">的</span>
+        <span style="transform: rotateZ(-12deg) translate3d(0px, 0px, 0px);">福</span>
+        <span style="transform: rotateZ(-4deg) translate3d(0px, 0px, 0px);">气</span>
+        <span style="transform: rotateZ(4deg) translate3d(0px, 0px, 0px);">指</span>
+        <span style="transform: rotateZ(12deg) translate3d(0px, 0px, 0px);">数</span>
+        <span style="transform: rotateZ(20deg) translate3d(0px, 0px, 0px);">不</span>
+        <span style="transform: rotateZ(28deg) translate3d(0px, 0px, 0px);">明</span>
+      </div>
       <!-- 灯笼 -->
       <div class="wh-100 absolute">
         <img class="lantern lantern-l" src="../images/lantern-l.gif" alt>
         <img class="lantern lantern-r" src="../images/lantern-l.gif" alt>
-      </div>
-      <div class="banner-context width-100 absolute emblem">
-        <span style="transform: rotateZ(-32deg) translate3d(0px, 0px, 0px);">您</span>
-        <span style="transform: rotateZ(-24deg) translate3d(0px, 0px, 0px);">的</span>
-        <span style="transform: rotateZ(-16deg) translate3d(0px, 0px, 0px);">福</span>
-        <span style="transform: rotateZ(-8deg) translate3d(0px, 0px, 0px);">气</span>
-        <span style="transform: rotateZ(0deg) translate3d(0px, 0px, 0px);">指</span>
-        <span style="transform: rotateZ(8deg) translate3d(0px, 0px, 0px);">数</span>
-        <span style="transform: rotateZ(16deg) translate3d(0px, 0px, 0px);">不</span>
-        <span style="transform: rotateZ(24deg) translate3d(0px, 0px, 0px);">明</span>
-        <!-- <span style="transform: rotateZ(32deg) translate3d(0px, 0px, 0px);">数</span> -->
       </div>
     </div>
     <!-- 再测一次 -->

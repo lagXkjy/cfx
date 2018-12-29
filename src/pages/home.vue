@@ -13,12 +13,13 @@
         <span style="transform: rotateZ(-32deg) translate3d(0px, 0px, 0px);">你</span>
         <span style="transform: rotateZ(-24deg) translate3d(0px, 0px, 0px);">是</span>
         <span style="transform: rotateZ(-16deg) translate3d(0px, 0px, 0px);">有</span>
-        <span class="banner-scale" style="transform: rotateZ(-8deg) translate3d(0px, 0px, 0px);">福</span>
-        <span class="banner-scale" style="transform: rotateZ(0deg) translate3d(0px, 0px, 0px);">相</span>
+        <!-- <span class="banner-scale" style="transform: rotateZ(-8deg) translate3d(0px, 0px, 0px);">福</span>
+        <span class="banner-scale" style="transform: rotateZ(0deg) translate3d(0px, 0px, 0px);">相</span> -->
         <span style="transform: rotateZ(8deg) translate3d(0px, 0px, 0px);">的</span>
         <span style="transform: rotateZ(16deg) translate3d(0px, 0px, 0px);">人</span>
         <span style="transform: rotateZ(24deg) translate3d(0px, 0px, 0px);">吗</span>
         <span style="transform: rotateZ(32deg) translate3d(0px, 0px, 0px);">?</span>
+        <img class="fx-img" src="../images/fx.gif" alt="">
       </div>
       <!-- 灯笼 -->
       <div class="wh-100 absolute">
@@ -46,6 +47,13 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+.fx-img{
+  width: 1.6rem;
+  position: absolute;
+  top: -0.1rem;
+  left: 3.7rem;
+  transform: rotateZ(-1deg)
+}
 .banner-box {
   top: 1.5rem;
   width: 110%;
@@ -132,5 +140,18 @@ export default {
   right: 0;
   top: 0;
   bottom: 0;
+}
+// .banner-scale{
+//   animation: mymove 0.5s ease-in-out infinite alternate;
+// }
+@keyframes mymove{
+  from{
+    font-size: 0.75rem;
+    // top: -0.1rem;
+  }
+  to{
+    font-size: 0.66rem;
+    // top: 0;
+  }
 }
 </style>

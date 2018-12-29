@@ -31,15 +31,14 @@
         <img class="lantern lantern-r" src="../images/lantern-l.gif" alt>
       </div>
       <div class="banner-context width-100 absolute emblem">
-        <span style="transform: rotateZ(-32deg) translate3d(0px, 0px, 0px);">已</span>
-        <span style="transform: rotateZ(-24deg) translate3d(0px, 0px, 0px);">亥</span>
-        <span style="transform: rotateZ(-16deg) translate3d(0px, 0px, 0px);">年</span>
-        <span style="transform: rotateZ(-8deg) translate3d(0px, 0px, 0px);">福</span>
-        <span style="transform: rotateZ(0deg) translate3d(0px, 0px, 0px);">气</span>
-        <span style="transform: rotateZ(8deg) translate3d(0px, 0px, 0px);">排</span>
-        <span style="transform: rotateZ(16deg) translate3d(0px, 0px, 0px);">行</span>
-        <span style="transform: rotateZ(24deg) translate3d(0px, 0px, 0px);">榜</span>
-        <!-- <span style="transform: rotateZ(32deg) translate3d(0px, 0px, 0px);">?</span> -->
+        <span style="transform: rotateZ(-28deg) translate3d(0px, 0px, 0px);">已</span>
+        <span style="transform: rotateZ(-20deg) translate3d(0px, 0px, 0px);">亥</span>
+        <span style="transform: rotateZ(-12deg) translate3d(0px, 0px, 0px);">年</span>
+        <span style="transform: rotateZ(-4deg) translate3d(0px, 0px, 0px);">福</span>
+        <span style="transform: rotateZ(4deg) translate3d(0px, 0px, 0px);">气</span>
+        <span style="transform: rotateZ(12deg) translate3d(0px, 0px, 0px);">排</span>
+        <span style="transform: rotateZ(20deg) translate3d(0px, 0px, 0px);">行</span>
+        <span style="transform: rotateZ(28deg) translate3d(0px, 0px, 0px);">榜</span>
       </div>
     </div>
     <div class="rank-box">

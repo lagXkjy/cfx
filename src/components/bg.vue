@@ -41,10 +41,26 @@ export default {
   mounted() {
     let bgBox = document.getElementsByClassName("bg-box");
     let wraper = document.getElementById("my-wraper");
-    console.log(bgBox);
+    let height = wraper.clientHeight;
+    let width = wraper.clientWidth;
+    width = height * 0.616;
+    // if (width >= height) {
+    //   //宽度大于高度，以高度为基准
+    //   width = height * 0.63
+    // } else {
+    //   //高度大于宽度
+    //   let h = width * 0.63;
+    //   if (height <= h) {
+    //     //高度小于应有比例高度，以高度为基准
+    //     width = height * 0.63;
+    //   } else {
+    //     //高度超出，应有比例高度过多
+    //     height = width / 0.63;
+    //   }
+    // }
     for (let i = 0, len = bgBox.length; i < len; i++) {
-      bgBox[i].style.height = wraper.clientHeight + "px";
-      bgBox[i].style.width = wraper.clientHeight * 0.616 + 'px';
+      bgBox[i].style.height = height + "px";
+      bgBox[i].style.width = width + "px";
     }
   }
 };
