@@ -195,6 +195,11 @@ export default {
             return (all/5).toFixed(1)
         }
     },
+    created(){
+        request.post('GetResult').then(res => {
+            alert(JSON.stringify(res))
+        }).catch(err => {alert(JSON.stringify(err))})
+    },
     mounted() {
         this.drawEcharts();
 
@@ -211,12 +216,16 @@ export default {
     methods: {
         kfd() {
             //开福袋点击事件
-            request('Addfu' ,{Goodvalue: this.avage}).then(res => {
-                alert(JSON.stringify(res))
                 this.$router.push({
                     path: '/congrats'
                 })
-            }).catch(err => {console.log(err)})
+
+            // request('Addfu' ,{Goodvalue: this.avage}).then(res => {
+            //     alert(JSON.stringify(res))
+            //     this.$router.push({
+            //         path: '/congrats'
+            //     })
+            // }).catch(err => {console.log(err)})
         },
         successCreateImg(e) {
             //图片生成成功了
