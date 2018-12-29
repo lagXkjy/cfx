@@ -67,7 +67,7 @@
 </template>
 
 <script>
-import $request from "@utils/ranking.vue";
+import $request from "@/utils/request";
 export default {
   data() {
     return {
