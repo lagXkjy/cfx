@@ -27,18 +27,21 @@ export default {
         return{
             video: '',
             showPhoto: navigator.mediaDevices.getUserMedia === undefined ? false : true,
+            //showPhoto: false,
             notice: navigator.mediaDevices.getUserMedia === undefined ? '请点击下面按钮自拍照片' : '请将脸部对准扫描框并拍照'
         }
     },
     methods: {
         takePhoto(){
+            alert(this.showPhoto)
             if(this.showPhoto){
                 let canvas = document.getElementById('cameraCanvas')
                 let context = canvas.getContext('2d')
                 canvas.width = this.video.videoWidth
                 canvas.height = this.video.videoHeight
                 context.drawImage(this.video ,0 ,0)
-                sessionStorage.setItem('img64' ,canvas.toDataURL('image/png' ,1))
+                sessionStorage.setItem('img64' ,canvas.toDataURL('image/png' ,1).replace(/\s+/g,""))
+                //sessionStorage.setItem('img64' ,canvas.toBlob())
                 sessionStorage.setItem('Orientation' ,0)
                 this.$router.push({
                     path: '/testing'
@@ -50,13 +53,17 @@ export default {
         fileChange(){
             let self = this
             let fileData = this.$refs.imgFile.files[0]
-            //console.log(fileData)
+            // sessionStorage,setItem('img64' ,fileData)
+            // self.$router.push({
+            //     path: '/testing'
+            // })
+            console.log(fileData)
             let reader = new FileReader()
             reader.readAsDataURL(fileData)
             reader.onload = (e) => {
                 //console.log(e.target.result)
                 sessionStorage.setItem('Orientation' ,1)
-                sessionStorage.setItem('img64' ,e.target.result)
+                sessionStorage.setItem('img64' ,e.target.result.replace(/\s+/g,""))
                 self.$router.push({
                     path: '/testing'
                 })

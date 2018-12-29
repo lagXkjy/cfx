@@ -22,6 +22,7 @@
 /* eslint-disable */
 // import EXIF from 'exif-js'
 import request from '@/utils/request'
+import { urlencoded } from 'body-parser';
 export default {
     data(){
         return {
@@ -36,12 +37,25 @@ export default {
         //   testing
     },
     created(){
-        // request.post('UploadImg' ,{postFile: sessionStorage.getItem('img64')}).then(res => {
+        // request.post('UploadImg_' ,{postFile: sessionStorage.getItem('img64')}).then(res => {
+        //     alert(JSON.stringify(res))
+        //     if(res.Status == true){
+        //         request.post('Testface' ,{imgpath: res.Results}).then(resp => {
+        //             alert(JSON.stringify(resp))
+        //         }).catch(err => {JSON.stringify(err)})
+        //     }
+        // }).catch(err => {alert(err)})
+        request.post('UploadImg' ,{postFile: encodeURIComponent(sessionStorage.getItem('img64'))}).then(res => {
+            alert(JSON.stringify(res))
+            if(res.Status == true){
+                request.post('Testface' ,{imgpath: res.Results}).then(resp => {
+                    alert(JSON.stringify(resp))
+                }).catch(err => {JSON.stringify(err)})
+            }
+        }).catch(err => {alert(err)})
+        // request.post("UploadImg" ,{postFile: 'iVBORw0KGgoAAAANSUhEUgAAAAsAAAALAQMAAACTYuVlAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAGUExURQAAAAAAAKVnuc8AAAABdFJOUwBA5thmAAAAE0lEQVQI12NgYWBARv8fMKCKAAAhuAII3zKSpgAAAABJRU5ErkJggg=='}).then(res => {
         //     alert(JSON.stringify(res))
         // }).catch(err => {alert(err)})
-        request.post("UploadImg" ,{postFile: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAALAQMAAACTYuVlAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAGUExURQAAAAAAAKVnuc8AAAABdFJOUwBA5thmAAAAE0lEQVQI12NgYWBARv8fMKCKAAAhuAII3zKSpgAAAABJRU5ErkJggg=='}).then(res => {
-            alert(JSON.stringify(res))
-        }).catch(err => {alert(err)})
         //request.get('ConfigParams').then(res => {console.log(res)}).catch(err => {alert(err)})
         // request.get('ConfigParams').then(res => {
         //     console.log(res)

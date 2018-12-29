@@ -16,7 +16,7 @@ service.interceptors.request.use(
         //     config.headers['X-Token'] = sessionStorage.getItem('token') // 让每个请求携带自定义token 请根据实际情况自行修改
         // }
         //config.headers['X-Token'] = 'teng520'
-        config.headers['content-type'] = 'application/x-www-form-urlencoded;charset=UTF8'
+        config.headers['content-type'] = 'application/json;charset=UTF8'
         config.headers['Access-Control-Allow-Origin'] = '*'
         return config
     },
