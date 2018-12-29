@@ -3,7 +3,7 @@
     <div class="wh-100 absolute">
         <createImage @successCreateImg="successCreateImg"></createImage>
         <div class="result-box width-100 absolute">
-            <div class="result-score width-100">56.8</div>
+            <div class="result-score width-100">{{avage}}</div>
             <div class="echarts-box relative">
                 <div id="resultchart" class="wh-100"></div>
 
@@ -13,33 +13,33 @@
                 <div class="echarts-f echarts-f-1">
                     <div class="echarts-f-s"></div>
                     <span>眼福</span>
-                    <div class="echarts-num">78</div>
+                    <div class="echarts-num">{{radarOptions.series[0].data[0].value[0]}}</div>
                 </div>
                 <div class="echarts-f echarts-f-2">
                     <div class="echarts-f-s"></div>
                     <span>艳福</span>
-                    <div class="echarts-num">78</div>
+                    <div class="echarts-num">{{radarOptions.series[0].data[0].value[1]}}</div>
                 </div>
                 <div class="echarts-f echarts-f-3">
                     <div class="echarts-f-s"></div>
                     <span>耳福</span>
-                    <div class="echarts-num">78</div>
+                    <div class="echarts-num">{{radarOptions.series[0].data[0].value[2]}}</div>
                 </div>
                 <div class="echarts-f echarts-f-4">
                     <div class="echarts-f-s"></div>
                     <span>口福</span>
-                    <div class="echarts-num">78</div>
+                    <div class="echarts-num">{{radarOptions.series[0].data[0].value[3]}}</div>
                 </div>
                 <div class="echarts-f echarts-f-5">
                     <div class="echarts-f-s"></div>
                     <span>清福</span>
-                    <div class="echarts-num">78</div>
+                    <div class="echarts-num">{{radarOptions.series[0].data[0].value[4]}}</div>
                 </div>
             </div>
             <div class="result-context">
                 <div class="result-text">年度最旺福气</div>
-                <div class="result-f">眼福</div>
-                <div class="result-text">宝瓶座η流星雨不错过</div>
+                <div class="result-f">{{radarTitle}}</div>
+                <div class="result-text">{{radarText}}</div>
             </div>
         </div>
         <!-- 横幅 -->
@@ -101,16 +101,37 @@
 <script>
 import createImage from "../components/createImage";
 import html2canvas from "html2canvas";
+import request from '@/utils/request'
 export default {
     components: {
         createImage
     },
     data() {
         function initData(){
-            return ''
+            return (Math.random() * (100 - 70) + 70).toFixed(0)
         }
-
         return {
+            radarTitle: '',
+            radarText: '',
+            radarData: [
+                {
+                    name: '眼福',
+                    text: ['宝瓶座η流星雨不错过' ,'爱豆巡演前排票轻松get' ,'新同事颜值很能打' ,'《权游》第8季抢先看' ,'四大时装周随便进']
+                },{
+                    name: '艳福',
+                    text: ['每逢天冷必有人暖床' ,'平均一周被告白3次' ,'健身教练颜值很能打' ,'每天都有草莓种' ,'街头邂逅男神/女神']
+                },{
+                    name: '耳福',
+                    text: ['从此不被老板训' ,'新机不用煲音质满分' ,'享受祖传掏耳服务' ,'抖音刷到小众神曲' ,'周末不被加班电话打扰']
+                },{
+                    name: '口福',
+                    text: ['网红店拔草从来不等位' ,'路边摊尝到隐藏米其林' ,'蹭饭成功率99%' ,'老板画的大饼都吃到嘴' ,'爱人吻技大飙升']
+                },
+                {
+                    name: '清福',
+                    text: ['上班摸鱼so easy' ,'人在床上躺，钱从天上来' ,'只能靠环游世界打发时间' ,'队友carry强，躺赢上王者' ,'逛街收房租，轻松过日子']
+                },
+            ],
             image: "",
             radarOptions:{
                 color: "green",
@@ -156,7 +177,7 @@ export default {
                         type: "radar",
                         data: [
                             {
-                                value: [10, 20, 30, 40, 50]
+                                value: [initData(), initData(), initData(), initData(), initData()]
                             }
                         ]
                     }
@@ -164,13 +185,38 @@ export default {
             }
         };
     },
+    computed: {
+        avage(){
+            let num = this.radarOptions.series[0].data[0].value
+            let all = 0
+            for(let i in num){
+                all += Number(num[i])
+            }
+            return (all/5).toFixed(1)
+        }
+    },
     mounted() {
         this.drawEcharts();
+
+        function rangeWenan(){
+            return (Math.random() * (4 - 0) + 0).toFixed(0)
+        }
+        function maxArr(arr){
+            let temp = arr.concat().sort().reverse()[0]
+            return arr.indexOf(temp)
+        }
+        this.radarTitle = this.radarData[maxArr(this.radarOptions.series[0].data[0].value)].name
+        this.radarText = this.radarData[maxArr(this.radarOptions.series[0].data[0].value)].text[rangeWenan()]
     },
     methods: {
         kfd() {
             //开福袋点击事件
-            console.log(23233);
+            request('Addfu' ,{Goodvalue: this.avage}).then(res => {
+                alert(JSON.stringify(res))
+                this.$router.push({
+                    path: '/congrats'
+                })
+            }).catch(err => {console.log(err)})
         },
         successCreateImg(e) {
             //图片生成成功了
