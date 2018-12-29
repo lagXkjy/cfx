@@ -43,6 +43,9 @@ export default {
             alert(JSON.stringify(res))
         }).catch(err => {alert(err)})
         //request.get('ConfigParams').then(res => {console.log(res)}).catch(err => {alert(err)})
+        // request.get('ConfigParams').then(res => {
+        //     console.log(res)
+        // }).catch(err => {console.log('err' ,err)})
     },
     mounted(){
 
