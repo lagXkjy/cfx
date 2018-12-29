@@ -28,18 +28,45 @@
 </template>
 
 <script>
-import $request from '@/utils/request'
+import $request from "@/utils/request";
 export default {
-  methods:{
-    submit(){
-      const data = {Name: this.Name, Phone:this.Phone, Site: this.Site, PrizeId: this.PrizeId}
-      $request.post('PostAddress', data)
-      .then(res => {
-
-      })
-      .catch(err => {
-        
-      })
+  data() {
+    return {
+      Name: "",
+      Phone: "",
+      Site: "",
+      PrizeId: 1
+    };
+  },
+  methods: {
+    submit() {
+      if (this.Name.trim().length <= 0) {
+        return alert("请填写姓名");
+      }
+      if (!/^(1[3456789]|9[28])\d{9}$/.test("" + this.Phone)) {
+        return alert("请填写正确的手机号");
+      }
+      if (this.Site.trim().length <= 0) {
+        return alert("请填写地址");
+      }
+      const data = {
+        Name: this.Name,
+        Phone: this.Phone,
+        Site: this.Site,
+        PrizeId: this.PrizeId
+      };
+      alert(JSON.stringify(data));
+      $request
+        .post("PostAddress", data)
+        .then(res => {
+          alert(JSON.stringify(res));
+          if (!res.res) {
+            alert("提交失败");
+          }
+        })
+        .catch(err => {
+          alert(JSON.stringify(err));
+        });
     }
   }
 };

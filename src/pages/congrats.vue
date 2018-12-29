@@ -4,18 +4,18 @@
     <div class="info-box">
       <img class="info-bg wh-100" src="../images/info.png" alt>
       <congrats1></congrats1>
-      <!-- <congrats2></congrats2> -->
-      <!-- <congrats3></congrats3> -->
-      <!-- <congrats4></congrats4> -->
-      <!-- <congrats5></congrats5> -->
+      <!-- <congrats2></congrats2>
+      <congrats3></congrats3>
+      <congrats4></congrats4>
+      <congrats5></congrats5>-->
     </div>
-    <!-- 福气榜单 -->
+    <!-- 比拼福气 -->
     <div @click="myShare" class="btn-box-b">
       <img class="btn-img" src="../images/btn-green.png" alt>
       <div class="btn-context wh-100 absolute flex justify-center align-center">比拼福气</div>
     </div>
     <!-- 福气榜单 -->
-    <div class="btn-box">
+    <div @click="toRanking" class="btn-box">
       <img class="btn-img" src="../images/btn-green.png" alt>
       <div class="btn-context wh-100 absolute flex justify-center align-center">福气榜单</div>
     </div>
@@ -31,7 +31,7 @@ import congrats4 from "../components/congrats4.vue";
 import congrats5 from "../components/congrats5.vue";
 import tmall from "../components/tmall.vue";
 import wx from "weixin-js-sdk";
-import request from "@/utils/request";
+import $request from "@/utils/request";
 export default {
   components: {
     congrats1,
@@ -42,62 +42,70 @@ export default {
     tmall
   },
   mounted() {
+    alert("弹框");
     wx.ready(() => {
-      wx.updateAppMessageShareData({
+      wx.onMenuShareAppMessage({
         title: "测福相", // 分享标题
         desc: "测测你的福相", // 分享描述
-        link:  window.location.href.split('#')[0], // 分享链接
+        link: window.location.href.split("#")[0], // 分享链接
         imgUrl: "", // 分享图标
         type: "", // 分享类型,music、video或link，不填默认为link
         dataUrl: "", // 如果type是music或video，则要提供数据链接，默认为空
         success: function() {
           // 用户确认分享后执行的回调函数
-          alert('分享成功')
+          alert("分享成功");
         },
         cancel: function() {
           // 用户取消分享后执行的回调函数
-          alert('分享失败')
+          alert("分享失败");
         }
       });
-      // wx.onMenuShareTimeline({
-      //   title: shareTitle, // 分享标题
-      //   link: shareUrl,
-      //   imgUrl: imgUrl, // 分享图标
-      //   success: function() {
-      //     // 用户确认分享后执行的回调函数
-      //   },
-      //   cancel: function() {
-      //     // 用户取消分享后执行的回调函数
-      //   }
-      // });
+      wx.onMenuShareTimeline({
+        title: "测福相", // 分享标题
+        link: window.location.href.split("#")[0],
+        imgUrl: "", // 分享图标
+        success: function() {
+          // 用户确认分享后执行的回调函数
+        },
+        cancel: function() {
+          // 用户取消分享后执行的回调函数
+        }
+      });
     });
     wx.error(function(res) {
       //通过error接口处理失败验证
-      alert('接口' + JSON.stringify(res))
+      alert("接口" + JSON.stringify(res));
     });
   },
   methods: {
     myShare() {
       //分享按钮
-      console.log(location.href);
-      request
-        .post("ConfigParams", {})
+      // console.log(location.href);
+      alert("分享");
+      $request
+        .post("ConfigParams", JSON.stringify({ url: location.href }))
         .then(res => {
-          //接口入住权限验证配置
-          wx.config({
-            debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+          alert("res" + JSON.stringify(res));
+          const data = {
+            debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
 
-            appId: 'wxf922ce057955c917', // 必填，公众号的唯一标识
+            appId: "wxf922ce057955c917", // 必填，公众号的唯一标识
             timestamp: res.timestamp, // 必填，生成签名的时间戳
             nonceStr: res.nonceStr, // 必填，生成签名的随机串
             signature: res.signature, // 必填，签名，见附录1
-            jsApiList: ["updateAppMessageShareData", "updateTimelineShareData"] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
-          });
+            jsApiList: ["onMenuShareTimeline", "onMenuShareAppMessage"]
+            // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+          };
+          //接口入住权限验证配置
+          wx.config(data);
         })
         .catch(res => {
-          console.log(res)
-          alert('接口' + JSON.stringify(res))
-        })
+          // console.log(res)
+          alert("接口1" + JSON.stringify(res));
+        });
+    },
+    toRanking(){
+      this.$router.push('/ranking')
     }
   }
 };

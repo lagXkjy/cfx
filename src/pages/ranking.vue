@@ -42,7 +42,7 @@
       </div>
     </div>
     <div class="rank-box">
-      <img @click="click" class="rank-top" src="../images/top.png" alt>
+      <img @click="red" class="rank-top" src="../images/top.png" alt>
       <div class="rank-list rank-list-f opacity-none">
         <div class="rank-rank"></div>
         <div class="rank-img"></div>
@@ -50,17 +50,17 @@
         <div class="rank-score">福气值</div>
       </div>
       <div class="rank-list relative opacity-none" v-for="item in rankingList" :key="item.rank">
-        <div class="rank-rank">{{item.rank}}</div>
+        <div class="rank-rank">{{$index + 1}}</div>
         <div class="rank-img">
           <img class="wh-100" src="../images/pictureFrame.png">
-          <div class="rank-picture-box wh-100" :style="{backgroundImage:'url(' + item.img + ')'}"></div>
+          <div class="rank-picture-box wh-100" :style="{backgroundImage:'url(' + item.Photo + ')'}"></div>
         </div>
-        <div class="rank-name">{{item.name}}</div>
-        <div class="rank-score">{{item.score}}</div>
+        <div class="rank-name">{{item.NickName}}</div>
+        <div class="rank-score">{{item.GoodValue}}</div>
         <div class="rank-border rank-border-green"></div>
         <div class="rank-border rank-border-yellow"></div>
       </div>
-      <img class="rank-bottom" src="../images/top.png" alt>
+      <img @click="add" class="rank-bottom" src="../images/top.png" alt>
     </div>
   </div>
 </template>
@@ -70,32 +70,27 @@ import $request from "@/utils/request";
 export default {
   data() {
     return {
-      rankingList: [
-        {
-          name: "笑清风",
-          rank: "1",
-          score: "98.1",
-          img:
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1545887747547&di=b24f969d75de81b8685a7634d5749c2a&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dshijue1%252C0%252C0%252C294%252C40%2Fsign%3D4af020d471cb0a46912f837a030a9c51%2Ff31fbe096b63f6242d63fb2d8d44ebf81a4ca3e6.jpg"
-        },
-        {
-          name: "笑",
-          rank: "2",
-          score: "98.1",
-          img:
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1545887747547&di=b24f969d75de81b8685a7634d5749c2a&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dshijue1%252C0%252C0%252C294%252C40%2Fsign%3D4af020d471cb0a46912f837a030a9c51%2Ff31fbe096b63f6242d63fb2d8d44ebf81a4ca3e6.jpg"
-        }
-      ]
+      rankingList: [],
+      page: 1
     };
   },
   mounted() {
     this.getList();
   },
   methods: {
-    getList() { //获取列表
+    red(){
+
+    },
+    add(){
+
+    },
+    getList() {
+      //获取列表
       $request
         .post("blessingList", {})
-        .then(res => {})
+        .then(res => {
+          this.rankingList = res["_list"];
+        })
         .catch(err => {});
     }
   }

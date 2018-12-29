@@ -51,7 +51,7 @@ export default {
   width: 1.6rem;
   position: absolute;
   top: -0.1rem;
-  left: 3.7rem;
+  left: 38%;
   transform: rotateZ(-1deg)
 }
 .banner-box {
@@ -140,18 +140,5 @@ export default {
   right: 0;
   top: 0;
   bottom: 0;
-}
-// .banner-scale{
-//   animation: mymove 0.5s ease-in-out infinite alternate;
-// }
-@keyframes mymove{
-  from{
-    font-size: 0.75rem;
-    // top: -0.1rem;
-  }
-  to{
-    font-size: 0.66rem;
-    // top: 0;
-  }
 }
 </style>
