@@ -4,14 +4,14 @@
             <div class="camera-inner">
                 <video id="cameraVideo" autoplay></video>
                 <canvas id="cameraCanvas" style="display:none;"></canvas>
-                <input id="cameraFile" type="file" accept="image/*" capture='camera' style="display:none;" @change="fileChange" ref="imgFile">
+                <input id="cameraFile" type="file" accept="image/*" capture='user' style="display:none;" @change="fileChange" ref="imgFile">
             </div>
             <div class="camera-item item1"></div>    
             <div class="camera-item item2"></div>    
             <div class="camera-item item3"></div>    
             <div class="camera-item item4"></div>    
         </div>
-        <p class="p-notice">{{notice}}</p>
+        <p class="p-notice" style="text-align: center;">{{!notice ? '请点击下面按钮自拍照片' : '请将脸部对准扫描框并拍照'}}</p>
         <div class="camera-btn" @click="takePhoto">
             <div class="camera-btn-div"></div>
         </div>
@@ -26,21 +26,22 @@ export default {
     data(){
         return{
             video: '',
-            showPhoto: navigator.mediaDevices.getUserMedia === undefined ? false : true,
+            showPhoto: !navigator.mediaDevices.getUserMedia ? false : true,
             //showPhoto: false,
-            notice: navigator.mediaDevices.getUserMedia === undefined ? '请点击下面按钮自拍照片' : '请将脸部对准扫描框并拍照'
+            notice: navigator.mediaDevices && navigator.mediaDevices.getUserMedia 
         }
     },
     methods: {
         takePhoto(){
-            alert(this.showPhoto)
+            //alert(this.showPhoto)
             if(this.showPhoto){
                 let canvas = document.getElementById('cameraCanvas')
                 let context = canvas.getContext('2d')
                 canvas.width = this.video.videoWidth
                 canvas.height = this.video.videoHeight
                 context.drawImage(this.video ,0 ,0)
-                sessionStorage.setItem('img64' ,canvas.toDataURL('image/png' ,1).replace(/\s+/g,""))
+                sessionStorage.setItem('img64' ,canvas.toDataURL('image/png' ,0.6).replace(/\s+/g,""))
+                //sessionStorage.setItem('img64' ,canvas.toDataURL('image/png' ,0.7).replace(/\s+/g,""))
                 //sessionStorage.setItem('img64' ,canvas.toBlob())
                 sessionStorage.setItem('Orientation' ,0)
                 this.$router.push({
@@ -62,11 +63,45 @@ export default {
             reader.readAsDataURL(fileData)
             reader.onload = (e) => {
                 //console.log(e.target.result)
-                sessionStorage.setItem('Orientation' ,1)
-                sessionStorage.setItem('img64' ,e.target.result.replace(/\s+/g,""))
-                self.$router.push({
-                    path: '/testing'
-                })
+
+                try{
+                    const img = new Image()
+                    img.src = e.target.result
+                    img.onload = () => {
+                        const w = img.width
+                        const h = img.height
+                        const canvas = document.createElement('canvas')
+                        const ctx = canvas.getContext('2d')
+
+                        const anw = document.createAttribute("width")
+                        anw.nodeValue = w /3
+                        // anw.nodeValue = w
+                        const anh = document.createAttribute("height")
+                        anh.nodeValue = h /3
+                        // anh.nodeValue = h
+                        canvas.setAttributeNode(anw)
+                        canvas.setAttributeNode(anh)
+
+                        ctx.drawImage(img ,0 ,0 ,w ,h ,0 ,0 ,w /3 ,h / 3)
+                        // ctx.drawImage(img ,0 ,0 ,w ,h)
+                        sessionStorage.setItem('img64' ,canvas.toDataURL('image/png' ,0.3).replace(/\s+/g,""))
+                        //alert(canvas.toDataURL('image/png' ,0.7))
+                        sessionStorage.setItem('Orientation' ,1)
+                        self.$router.push({
+                            path: '/testing'
+                        })
+                    }
+                }catch(err){
+                    alert('错误:'+err)
+                }
+
+                
+
+                // sessionStorage.setItem('Orientation' ,1)
+                // sessionStorage.setItem('img64' ,e.target.result.replace(/\s+/g,""))
+                // self.$router.push({
+                //     path: '/testing'
+                // })
             }
         }
     },
@@ -82,25 +117,28 @@ export default {
             },
             audio: false
         }
-        if (navigator.mediaDevices === undefined) {
-            navigator.mediaDevices = {};
-        }
-        if(navigator.mediaDevices.getUserMedia === undefined){
-            navigator.mediaDevices.getUserMedia = function(constraints){
-                let getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
-                if (!getUserMedia) {
-                    return Promise.reject(new Error('getUserMedia is not implemented in this browser'));
-                }
-                return new Promise(function(resolve, reject) {
-                    getUserMedia.call(navigator, constraints, resolve, reject);
-                });
-            }
-        }
+        // if (navigator.mediaDevices === undefined) {
+        //     navigator.mediaDevices = {};
+        // }
+        // if(navigator.mediaDevices.getUserMedia === undefined){
+        //     navigator.mediaDevices.getUserMedia = function(constraints){
+        //         let getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+        //         if (!getUserMedia) {
+        //             return Promise.reject(new Error('getUserMedia is not implemented in this browser'));
+        //         }
+        //         return new Promise(function(resolve, reject) {
+        //             getUserMedia.call(navigator, constraints, resolve, reject);
+        //         });
+        //     }
+        // }
         //alert(navigator.mediaDevices)
         navigator.mediaDevices.getUserMedia(constraints).then(stream => {
             //currentStream = stream
             this.video.srcObject = stream
         }).catch(err => {console.log(err)})
+    },
+    destroyed(){
+        this.showPhoto = this.showPhoto
     }
 }
 </script>

@@ -39,7 +39,7 @@ service.interceptors.response.use(
         }else{
             return response.data
         }
-        //return response.data
+        return response.data
     },
     error => {
         console.log('error' ,error)

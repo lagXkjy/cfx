@@ -73,7 +73,8 @@ export default {
   },
   methods: {
     toTesting() {
-      this.$router.go(-2);
+        //alert('跳转')
+      this.$router.back(-1);
     },
     drawEcharts() {
       //雷达图

@@ -1,18 +1,24 @@
 <template>
     <!-- 测试结果页 -->
     <div class="wh-100 absolute">
-        <createImage @successCreateImg="successCreateImg"></createImage>
+        <createImage @successCreateImg="successCreateImg" 
+        :radarOptions="radarOptions" 
+        :nickName="nickName"
+        :radarTitle="radarTitle"
+        :radarText="radarText"
+        :avage="avage"
+        :backObj="backObj" ></createImage>
         <div class="result-box width-100 absolute">
             <div class="result-score width-100">{{avage}}</div>
             <div class="echarts-box relative">
                 <div id="resultchart" class="wh-100"></div>
 
-                <!-- <div class="frame-box" style="position:absolute;">
-                    <img id="userImage" class="wh-100" src="../images/pictureFrame.png">
+                <div class="frame-box">
+                    <img class="wh-100" src="../images/pictureFrame.png">
                     <div class="picture-box wh-100">
                         <div class="picture-box wh-100" :style="backObj"></div>
                     </div>
-                </div> -->
+                </div>
 
                 <!-- 五福 -->
                 <div class="echarts-f echarts-f-1">
@@ -87,7 +93,7 @@
             <!-- 灯笼 -->
             <div class="wh-100 absolute">
                 <img class="lantern lantern-l" src="../images/lantern-l.gif" alt>
-                <img class="lantern lantern-r" src="../images/lantern-l.gif" alt>
+                <img class="lantern lantern-r" src="../images/lantern-r.gif" alt>
             </div>
         </div>
         <!-- 开福 -->
@@ -104,6 +110,7 @@
 </template>
 
 <script>
+/* eslint-disable */
 import createImage from "../components/createImage";
 import html2canvas from "html2canvas";
 import request from '@/utils/request'
@@ -116,21 +123,24 @@ export default {
             return (Math.random() * (100 - 70) + 70).toFixed(0)
         }
         function getName(){
-            // let nickname = sessionStorage.getItem('NickName').substring(0,6).split('')
-            let str = '哈哈哈哈哈'
+            let str = sessionStorage.getItem('NickName')
+            //let str = '哈哈hahahahahah'
             let nickname = str.substring(0,6).split('')
             let arr = ['' ,'' ,'' ,'' ,'' ,'']
             for(let i in nickname){
                 arr[i] = nickname[i]
             }
-            if(nickname.length > 6){
+            if(str.split('').length > 6){
                 arr[5] = '...'
             }
             return arr
         }
         return {
             nickName: getName(),
-            deg: -15,
+            backObj: {
+                'background-image': "url("+ sessionStorage.getItem('img64') || '../images/pictureFrame.png' +")",
+                'transform': sessionStorage.getItem('Orientation') == 1 ? 'rotate(90deg) scale(1.2)' : 'rotate(0)'
+            },
 
             radarTitle: '',
             radarText: '',
@@ -240,10 +250,10 @@ export default {
                 // })
 
             request.post('Addfu' ,{Goodvalue: this.avage}).then(res => {
-                alert(JSON.stringify(res))
+                //alert(JSON.stringify(res))
                 if(res.res){
                     request.post('GetResult').then(res => {
-                        alert(JSON.stringify(res))
+                        //alert(JSON.stringify(res))
                         if(res.res){
                             sessionStorage.setItem('result' ,res.result)
                             this.$router.push({
@@ -271,6 +281,42 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+.frame-box {
+    overflow: hidden;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2rem;
+    height: 2rem / 0.78;
+
+    transform: translate(-50% ,-50%);
+}
+.picture-box {
+    width: 2rem - 0.3rem;
+    height: 2rem / 0.78 - 0.3rem;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    top: 0;
+    right: 0;
+    margin: auto;
+    z-index: -1;
+    overflow: hidden;
+    border-radius: 50%;
+    //background: url(http://pic1.nipic.com/2008-12-30/200812308231244_2.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: auto 100%;
+}
+// .frame-context {
+//     text-align: center;
+//     font-size: 0.34rem;
+//     line-height: 0.36rem;
+//     margin-top: 0.1rem;
+//     color: #b31e23;
+// }
+
+
 .cImage {
     width: 100%;
     height: 100%;
@@ -416,8 +462,8 @@ export default {
 
 .lantern-r {
     right: 0.15rem;
-    transform: rotateY(180deg);
-    transform-origin: center top;
+    // transform: rotateY(180deg);
+    // transform-origin: center top;
 }
 
 .banner-context {

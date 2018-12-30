@@ -58,14 +58,15 @@ export default {
         .post("PostAddress", data)
         .then(res => {
           if (!res.res) {
-            alert("提交失败");
+            alert('提交失败');
           } else {
-            sessionStorage.setItem("scode", 1); // 0未领取 1已领取
-            this.$route.go(-1);
+            // sessionStorage.setItem("scode", 1); // 0未领取 1已领取
+            this.$store.commit('CHANGE_TMALL' ,false)
+            this.$route.back(-1);
           }
         })
         .catch(err => {
-          alert("提交失败");
+          alert('提交失败');
         });
     }
   }

@@ -10,13 +10,17 @@ const vuexLocal = new VuexPersistence({
 
 const store = new Vuex.Store({
     state: {
-        
+        showtmall: true
     },
     getters: {
-        
+        showtmall(state){
+            return state.showtmall
+        }
     },
     mutations: {
-        
+        CHANGE_TMALL(state ,bool){
+            state.showtmall = bool
+        }
     },
     actions: {
         

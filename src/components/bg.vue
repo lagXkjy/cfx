@@ -4,7 +4,7 @@
     <div class="bg-box absolute">
       <div class="bg-border relative wh-100">
         <div class="bg-border-green absolute wh-100" style="overflow:hidden;">
-          <img class="bg-petal" src="../images/petal.gif" alt>
+          <!-- <img class="bg-petal" src="../images/petal.gif" alt> -->
         </div>
       </div>
     </div>

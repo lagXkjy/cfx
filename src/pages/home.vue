@@ -44,22 +44,25 @@ export default {
     },
     toCongrats(id, scode) {
       sessionStorage.setItem("result", id);
-      sessionStorage.setItem("scode", scode);
+      //sessionStorage.setItem("scode", scode);
+      this.$store.commit('CHANGE_TMALL' ,scode ? false: true)
       this.$router.push("/congrats");
     },
     getawarddes() {
       $request.post("getawarddes").then(res => {
+          //alert(JSON.stringify(res))
         let list = res.list;
         if (list.length === 0) {
           //没有记录
-          this.toCamera();
+        //   this.toCamera();
         } else if (list.length === 1) {
           //有一条领取记录
           if (list[0].Scode) {
             //已领取
             if (res.result) {
+                return;
               //true 有第二次机会 false 没有
-              this.toCamera();
+            //   this.toCamera();
             }
             this.toCongrats(list[0].PrizesId, list[0].Scode);
           }

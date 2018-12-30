@@ -8,15 +8,28 @@
     </div>
     <img class="ds-image" src="../images/ds.png" alt>
     <!-- 立即领取 -->
-    <div class="btn-box">
+    <div class="btn-box" v-if="showtmall">
       <img class="btn-img" src="../images/btn-red.png" alt>
-      <div class="btn-context wh-100 absolute flex justify-center align-center">立即领取</div>
+      <div @click="getImmediate" class="btn-context wh-100 absolute flex justify-center align-center">立即领取</div>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+import { mapGetters } from 'vuex'
+
+export default {
+    computed: {
+        ...mapGetters(['showtmall'])
+    },
+    methods: {
+        getImmediate(){
+            this.$router.push({
+                path: '/addInfo'
+            })
+        }
+    }
+};
 </script>
 
  <style lang='scss' scoped>
