@@ -31,13 +31,15 @@ service.interceptors.response.use(
     response => {
         const res = response.data
 
-        // if(res.code !== 200){
-        //     //
-        //     return Promise.reject('error')
-        // }else{
-        //     return response.data
-        // }
-        return response.data
+        if(res.res == false && res.errtype == 4){
+            //
+            //return Promise.reject('error')
+            alert('失效')
+            location.href = 'http://cx.shhuiya.com/CefuApi/BindUserPage'
+        }else{
+            return response.data
+        }
+        //return response.data
     },
     error => {
         console.log('error' ,error)

@@ -7,7 +7,12 @@
             <div class="echarts-box relative">
                 <div id="resultchart" class="wh-100"></div>
 
-
+                <!-- <div class="frame-box" style="position:absolute;">
+                    <img id="userImage" class="wh-100" src="../images/pictureFrame.png">
+                    <div class="picture-box wh-100">
+                        <div class="picture-box wh-100" :style="backObj"></div>
+                    </div>
+                </div> -->
 
                 <!-- 五福 -->
                 <div class="echarts-f echarts-f-1">
@@ -52,27 +57,27 @@
                 <span
                     class="banner-you"
                     style="transform: rotateZ(-15deg) translate3d(0px, 0px, 0px);"
-                >清</span>
+                >{{nickName[0]}}</span>
                 <span
                     class="banner-you"
                     style="transform: rotateZ(-11deg) translate3d(0px, 0px, 0px);"
-                >明</span>
+                >{{nickName[1]}}</span>
                 <span
                     class="banner-you"
                     style="transform: rotateZ(-7deg) translate3d(0px, 0px, 0px);"
-                >上</span>
+                >{{nickName[2]}}</span>
                 <span
                     class="banner-you"
                     style="transform: rotateZ(-3deg) translate3d(0px, 0px, 0px);"
-                >河</span>
+                >{{nickName[3]}}</span>
                 <span
                     class="banner-you"
                     style="transform: rotateZ(1deg) translate3d(0px, 0px, 0px);"
-                >图</span>
+                >{{nickName[4]}}</span>
                 <span
                     class="banner-you"
                     style="transform: rotateZ(4deg) translate3d(0px, 0px, 0px);"
-                >...</span>
+                >{{nickName[5]}}</span>
                 <span style="transform: rotateZ(9deg) translate3d(0px, 0px, 0px);">的</span>
                 <span style="transform: rotateZ(15deg) translate3d(0px, 0px, 0px);">福</span>
                 <span style="transform: rotateZ(21deg) translate3d(0px, 0px, 0px);">气</span>
@@ -110,7 +115,23 @@ export default {
         function initData(){
             return (Math.random() * (100 - 70) + 70).toFixed(0)
         }
+        function getName(){
+            // let nickname = sessionStorage.getItem('NickName').substring(0,6).split('')
+            let str = '哈哈哈哈哈'
+            let nickname = str.substring(0,6).split('')
+            let arr = ['' ,'' ,'' ,'' ,'' ,'']
+            for(let i in nickname){
+                arr[i] = nickname[i]
+            }
+            if(nickname.length > 6){
+                arr[5] = '...'
+            }
+            return arr
+        }
         return {
+            nickName: getName(),
+            deg: -15,
+
             radarTitle: '',
             radarText: '',
             radarData: [
@@ -196,9 +217,7 @@ export default {
         }
     },
     created(){
-        request.post('GetResult').then(res => {
-            alert(JSON.stringify(res))
-        }).catch(err => {alert(JSON.stringify(err))})
+        //console.log(sessionStorage.getItem('NickName').substring(0,6))
     },
     mounted() {
         this.drawEcharts();
@@ -216,16 +235,25 @@ export default {
     methods: {
         kfd() {
             //开福袋点击事件
-                this.$router.push({
-                    path: '/congrats'
-                })
+                // this.$router.push({
+                //     path: '/congrats'
+                // })
 
-            // request('Addfu' ,{Goodvalue: this.avage}).then(res => {
-            //     alert(JSON.stringify(res))
-            //     this.$router.push({
-            //         path: '/congrats'
-            //     })
-            // }).catch(err => {console.log(err)})
+            request.post('Addfu' ,{Goodvalue: this.avage}).then(res => {
+                alert(JSON.stringify(res))
+                if(res.res){
+                    request.post('GetResult').then(res => {
+                        alert(JSON.stringify(res))
+                        if(res.res){
+                            sessionStorage.setItem('result' ,res.result)
+                            this.$router.push({
+                                path: '/congrats'
+                            })
+                        }
+                    }).catch(err => {alert(JSON.stringify(err))})
+                }
+                
+            }).catch(err => {alert(err)})
         },
         successCreateImg(e) {
             //图片生成成功了
