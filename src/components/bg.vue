@@ -20,10 +20,10 @@
           <img class="bg-newyear" src="../images/newyear.png" alt>
           <!-- flower -->
           <img class="bg-flower bg-flower-l" src="../images/flower-l.gif" alt>
-          <img class="bg-flower bg-flower-r" src="../images/flower-l.gif" alt>
+          <img class="bg-flower bg-flower-r" src="../images/flower-r.gif" alt>
           <!-- fish -->
           <img class="bg-fish bg-fish-l" src="../images/fish-l.gif" alt>
-          <img class="bg-fish bg-fish-r" src="../images/fish-l.gif" alt>
+          <img class="bg-fish bg-fish-r" src="../images/fish-r.gif" alt>
           <!-- firecrackers -->
           <img class="firecrackers firecrackers-l" src="../images/firecrackers-l.gif" alt>
           <img class="firecrackers firecrackers-r" src="../images/firecrackers-l.gif" alt>
@@ -129,8 +129,8 @@ export default {
 }
 .bg-flower-r {
   right: 0rem;
-  transform: rotateY(180deg);
-  transform-origin: center top;
+  // transform: rotateY(180deg) translateZ(0px);;
+  // transform-origin: center top;
 }
 .bg-fish {
   width: 33%;
@@ -142,8 +142,8 @@ export default {
 }
 .bg-fish-r {
   right: -0.64rem;
-  transform: rotateY(180deg);
-  transform-origin: center top;
+  // transform: rotateY(180deg) translateZ(100px);
+  // transform-origin: center top;
 }
 .firecrackers {
   width: 3.5rem;

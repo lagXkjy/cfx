@@ -41,13 +41,13 @@ export default {
   methods: {
     submit() {
       if (this.Name.trim().length <= 0) {
-        return alert("请填写姓名");
+        return alert("请填写收件人");
       }
       if (!/^(1[3456789]|9[28])\d{9}$/.test("" + this.Phone)) {
         return alert("请填写正确的手机号");
       }
       if (this.Site.trim().length <= 0) {
-        return alert("请填写地址");
+        return alert("请填写寄件地址");
       }
       const data = {
         Name: this.Name,
@@ -132,7 +132,7 @@ export default {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 3.27rem;
+  bottom: 2.5rem;
   margin: auto;
   text-align: center;
   color: #009942;

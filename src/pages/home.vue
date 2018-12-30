@@ -1,6 +1,6 @@
 <template>
   <!-- 首页， 动态猪 -->
-  <div class="wh-100 absolute">
+  <div class="wh-100 absolute overflow">
     <!-- 猪福 -->
     <div class="pig-box width-100 absolute">
       <img class="pig" src="../images/pig.gif" alt>
@@ -24,7 +24,7 @@
       <!-- 灯笼 -->
       <div class="wh-100 absolute">
         <img class="lantern lantern-l" src="../images/lantern-l.gif" alt>
-        <img class="lantern lantern-r" src="../images/lantern-l.gif" alt>
+        <img class="lantern lantern-r" src="../images/lantern-r.gif" alt>
       </div>
     </div>
     <!-- 刷脸开测 -->
@@ -72,8 +72,8 @@ export default {
 
 .lantern-r {
   right: 0.15rem;
-  transform: rotateY(180deg);
-  transform-origin: center top;
+  // transform: rotateY(180deg) translateZ(1px);
+  // transform-origin: center top;
 }
 
 .banner-context {
