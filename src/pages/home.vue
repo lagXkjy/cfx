@@ -14,12 +14,12 @@
         <span style="transform: rotateZ(-24deg) translate3d(0px, 0px, 0px);">是</span>
         <span style="transform: rotateZ(-16deg) translate3d(0px, 0px, 0px);">有</span>
         <!-- <span class="banner-scale" style="transform: rotateZ(-8deg) translate3d(0px, 0px, 0px);">福</span>
-        <span class="banner-scale" style="transform: rotateZ(0deg) translate3d(0px, 0px, 0px);">相</span> -->
+        <span class="banner-scale" style="transform: rotateZ(0deg) translate3d(0px, 0px, 0px);">相</span>-->
         <span style="transform: rotateZ(8deg) translate3d(0px, 0px, 0px);">的</span>
         <span style="transform: rotateZ(16deg) translate3d(0px, 0px, 0px);">人</span>
         <span style="transform: rotateZ(24deg) translate3d(0px, 0px, 0px);">吗</span>
         <span style="transform: rotateZ(32deg) translate3d(0px, 0px, 0px);">?</span>
-        <img class="fx-img" src="../images/fx.gif" alt="">
+        <img class="fx-img" src="../images/fx.gif" alt>
       </div>
       <!-- 灯笼 -->
       <div class="wh-100 absolute">
@@ -36,23 +36,55 @@
 </template>
 
 <script>
+import $request from "@/utils/request";
 export default {
   methods: {
     toCamera() {
-      console.log("rererer");
       this.$router.push("/camera");
+    },
+    toCongrats(id, scode) {
+      sessionStorage.setItem("result", id);
+      sessionStorage.setItem("scode", scode);
+      this.$router.push("/congrats");
+    },
+    getawarddes() {
+      $request.post("getawarddes").then(res => {
+        let list = res.list;
+        if (list.length === 0) {
+          //没有记录
+          this.toCamera();
+        } else if (list.length === 1) {
+          //有一条领取记录
+          if (list[0].Scode) {
+            //已领取
+            if (res.result) {
+              //true 有第二次机会 false 没有
+              this.toCamera();
+            }
+            this.toCongrats(list[0].PrizesId, list[0].Scode);
+          }
+        } else if (list.length === 2) {
+          //有两条奖品记录
+          // Scode		 0未领取 1已领取
+          // PrizesId  奖品Id
+          this.toCongrats(list[1].PrizesId, list[1].Scode);
+        }
+      });
     }
+  },
+  created() {
+    this.getawarddes();
   }
 };
 </script>
 
 <style lang='scss' scoped>
-.fx-img{
+.fx-img {
   width: 1.6rem;
   position: absolute;
   top: -0.1rem;
   left: 38%;
-  transform: rotateZ(-1deg)
+  transform: rotateZ(-1deg);
 }
 .banner-box {
   top: 1.5rem;

@@ -9,14 +9,14 @@
         <div class="rank-name"></div>
         <div class="rank-score">福气值</div>
       </div>
-      <div class="rank-list relative" v-for="item in rankingList" :key="item.rank">
+      <div class="rank-list relative" v-for="item in list" :key="item.rank">
         <div class="rank-rank">{{item.rank}}</div>
         <div class="rank-img">
           <img class="wh-100" src="../images/pictureFrame.png">
-          <div class="rank-picture-box wh-100" :style="{backgroundImage:'url(' + item.img + ')'}"></div>
+          <div class="rank-picture-box wh-100" :style="{backgroundImage:'url(' + item.Photo + ')'}"></div>
         </div>
-        <div class="rank-name">{{item.name}}</div>
-        <div class="rank-score">{{item.score}}</div>
+        <div class="rank-name">{{item.NickName}}</div>
+        <div class="rank-score">{{item.GoodValue}}</div>
         <div class="rank-border rank-border-green"></div>
         <div class="rank-border rank-border-yellow"></div>
       </div>
@@ -28,7 +28,7 @@
       <!-- 灯笼 -->
       <div class="wh-100 absolute">
         <img class="lantern lantern-l" src="../images/lantern-l.gif" alt>
-        <img class="lantern lantern-r" src="../images/lantern-l.gif" alt>
+        <img class="lantern lantern-r" src="../images/lantern-r.gif" alt>
       </div>
       <div class="banner-context width-100 absolute emblem">
         <span style="transform: rotateZ(-28deg) translate3d(0px, 0px, 0px);">已</span>
@@ -42,15 +42,15 @@
       </div>
     </div>
     <div class="rank-box">
-      <img @click="red" class="rank-top" src="../images/top.png" alt>
+      <img @click="reduce" class="rank-top" src="../images/top.png" alt>
       <div class="rank-list rank-list-f opacity-none">
         <div class="rank-rank"></div>
         <div class="rank-img"></div>
         <div class="rank-name"></div>
         <div class="rank-score">福气值</div>
       </div>
-      <div class="rank-list relative opacity-none" v-for="item in rankingList" :key="item.rank">
-        <div class="rank-rank">{{$index + 1}}</div>
+      <div class="rank-list relative opacity-none" v-for="item in list" :key="item.rank">
+        <div class="rank-rank">{{item.rank}}</div>
         <div class="rank-img">
           <img class="wh-100" src="../images/pictureFrame.png">
           <div class="rank-picture-box wh-100" :style="{backgroundImage:'url(' + item.Photo + ')'}"></div>
@@ -71,27 +71,50 @@ export default {
   data() {
     return {
       rankingList: [],
-      page: 1
+      list: [],
+      page: 1,
+      size: 4
     };
   },
   mounted() {
     this.getList();
   },
   methods: {
-    red(){
-
+    reduce() {
+      if (this.page > 1) {
+        this.page--;
+        this.changeList();
+      }
     },
-    add(){
-
+    add() {
+      if (this.page * this.size < this.rankingList.length) {
+        this.page++;
+        this.changeList();
+      }
+    },
+    changeList() {
+      let arr = [];
+      let size = this.size;
+      let rankingList = this.rankingList;
+      let index = (this.page - 1) * size;
+      let next = index + size;
+      let max = next > rankingList.length ? rankingList.length : next;
+      for (let i = index; i < max; i++) {
+        arr.push(this.rankingList[i]);
+      }
+      this.$data.list = arr;
+      this.list.splice(0, 0);
     },
     getList() {
       //获取列表
-      $request
-        .post("blessingList", {})
-        .then(res => {
-          this.rankingList = res["_list"];
-        })
-        .catch(err => {});
+      $request.post("blessingList", {}).then(res => {
+        let arr = res["_list"];
+        for (let i = 0, len = arr.length; i < len; i++) {
+          arr[i].rank = i + 1;
+        }
+        this.$data.rankingList = arr;
+        this.changeList();
+      });
     }
   }
 };
@@ -152,8 +175,8 @@ export default {
   margin: 0 0.34rem 0 0;
 }
 .rank-picture-box {
-  width: 1.2rem - 0.3rem;
-  height: 1.2rem / 0.78 - 0.3rem;
+  width: 1.2rem - 0.2rem;
+  height: 1.2rem / 0.78 - 0.2rem;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -210,8 +233,8 @@ export default {
 
 .lantern-r {
   right: 0.15rem;
-  transform: rotateY(180deg);
-  transform-origin: center top;
+  // transform: rotateY(180deg);
+  // transform-origin: center top;
 }
 
 .banner-context {

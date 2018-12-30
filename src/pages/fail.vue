@@ -55,7 +55,7 @@
       <!-- 灯笼 -->
       <div class="wh-100 absolute">
         <img class="lantern lantern-l" src="../images/lantern-l.gif" alt>
-        <img class="lantern lantern-r" src="../images/lantern-l.gif" alt>
+        <img class="lantern lantern-r" src="../images/lantern-r.gif" alt>
       </div>
     </div>
     <!-- 再测一次 -->
@@ -281,8 +281,8 @@ export default {
 
 .lantern-r {
   right: 0.15rem;
-  transform: rotateY(180deg);
-  transform-origin: center top;
+  // transform: rotateY(180deg);
+  // transform-origin: center top;
 }
 
 .banner-context {

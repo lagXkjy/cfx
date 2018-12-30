@@ -34,8 +34,7 @@ export default {
     return {
       Name: "",
       Phone: "",
-      Site: "",
-      PrizeId: 1
+      Site: ""
     };
   },
   methods: {
@@ -53,19 +52,20 @@ export default {
         Name: this.Name,
         Phone: this.Phone,
         Site: this.Site,
-        PrizeId: this.PrizeId
+        PrizeId: sessionStorage.getItem("result")
       };
-      alert(JSON.stringify(data));
       $request
         .post("PostAddress", data)
         .then(res => {
-          alert(JSON.stringify(res));
           if (!res.res) {
             alert("提交失败");
+          } else {
+            sessionStorage.setItem("scode", 1); // 0未领取 1已领取
+            this.$route.go(-1);
           }
         })
         .catch(err => {
-          alert(JSON.stringify(err));
+          alert("提交失败");
         });
     }
   }
