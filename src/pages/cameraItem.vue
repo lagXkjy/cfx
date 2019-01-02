@@ -44,7 +44,7 @@ export default {
                 //sessionStorage.setItem('img64' ,canvas.toDataURL('image/png' ,0.7).replace(/\s+/g,""))
                 //sessionStorage.setItem('img64' ,canvas.toBlob())
                 sessionStorage.setItem('Orientation' ,0)
-                this.$router.push({
+                this.$router.replace({
                     path: '/testing'
                 })
             }else{
@@ -87,7 +87,7 @@ export default {
                         sessionStorage.setItem('img64' ,canvas.toDataURL('image/png' ,0.3).replace(/\s+/g,""))
                         //alert(canvas.toDataURL('image/png' ,0.7))
                         sessionStorage.setItem('Orientation' ,1)
-                        self.$router.push({
+                        self.$router.replace({
                             path: '/testing'
                         })
                     }

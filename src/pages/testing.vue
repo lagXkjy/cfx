@@ -59,8 +59,11 @@ export default {
         //     alert('错误:'+err)
         // }
 
-        request.post('UploadImg' ,{postFile: encodeURIComponent(sessionStorage.getItem('img64'))}).then(res => {
-            //alert(JSON.stringify(res))
+        request.post('UploadImg' ,{
+                postFile: encodeURIComponent(sessionStorage.getItem('img64')),
+                ImgType: sessionStorage.getItem('Orientation')
+            }).then(res => {
+            alert(sessionStorage.getItem('Orientation'))
             if(res.Status == true){
                 request.post('Testface' ,{imgpath: res.Results}).then(resp => {
                     //alert(JSON.stringify(resp))
@@ -70,24 +73,26 @@ export default {
                             path: '/result'
                         })
                     }else{
-                        //alert('识别失败')
+                        alert('识别失败')
                         this.$router.replace({
                             path: '/fail'
                         })
                     }
                 }).catch(err => {
+                    alert('Testface接口失败'+JSON.stringify(err))
                     this.$router.replace({
                         path: '/fail'
                     })
                 })
             }else{
+                alert('上传resstatus不为true'+JSON.stringify(res))
                 this.$router.replace({
                     path: '/fail'
                 })
             }
         }).catch(err => {
             console.log('err' ,err)
-            //alert('上传:'+JSON.stringify(err))
+            alert('上传:'+JSON.stringify(err))
             this.$router.replace({
                 path: '/fail'
             })
