@@ -14,6 +14,9 @@ export default {
     };
   },
   created() {
+      document.body.removeChild(document.getElementById('LoadIng'))
+
+
     let ua = window.navigator.userAgent.toLowerCase();
     if (ua.match(/MicroMessenger/i) == "micromessenger") {
       this.isWX = true;

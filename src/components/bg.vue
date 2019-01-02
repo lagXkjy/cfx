@@ -4,7 +4,7 @@
     <div class="bg-box absolute">
       <div class="bg-border relative wh-100">
         <div class="bg-border-green absolute wh-100" style="overflow:hidden;">
-          <!-- <img class="bg-petal" src="../images/petal.gif" alt> -->
+          <img v-if="showFlower" class="bg-petal" src="../images/petal.gif" alt>
         </div>
       </div>
     </div>
@@ -36,8 +36,15 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   components: {},
+  computed: {
+      ...mapGetters([
+          'showFlower'
+      ])
+  },
   mounted() {
     let bgBox = document.getElementsByClassName("bg-box");
     let wraper = document.getElementById("my-wraper");

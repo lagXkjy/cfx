@@ -52,6 +52,9 @@ export default {
             showtmall: false
         };
     },
+    created(){
+        this.$store.commit('CHANGE_FLOWER' ,true)
+    },
     mounted() {
         wx.ready(() => {
             wx.onMenuShareAppMessage({

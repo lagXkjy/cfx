@@ -18,4 +18,4 @@ export default new VueRouter({
         { path: '/addInfo', component: getComponent('addInfo') },
         { path: '/congrats', component: getComponent('congrats') }
     ]
-}) 
+})

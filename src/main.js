@@ -12,6 +12,7 @@ Vue.config.productionTip = false
 Vue.prototype.$echarts = echarts
 
 
+
 new Vue({
   router,
   store,

@@ -37,6 +37,9 @@ export default {
       Site: ""
     };
   },
+  created(){
+      this.$store.commit('CHANGE_FLOWER' ,false)
+  },
   methods: {
     submit() {
       if (this.Name.trim().length <= 0) {

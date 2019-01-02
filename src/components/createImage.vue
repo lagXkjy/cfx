@@ -135,6 +135,9 @@ export default {
     data() {
         return {};
     },
+    created(){
+        this.$store.commit('CHANGE_FLOWER' ,false)
+    },
     mounted() {
         let bgBox = document.getElementsByClassName("bg-box")[0];
         let w = bgBox.clientWidth;

@@ -13,7 +13,7 @@
         <div class="rank-rank">{{item.rank}}</div>
         <div class="rank-img">
           <img class="wh-100" src="../images/pictureFrame.png">
-          <div class="rank-picture-box wh-100" :style="{backgroundImage:'url(' + item.Photo + ')'}"></div>
+          <div class="rank-picture-box wh-100" :style="{backgroundImage:'url(' + item.UImages || item.Photo + ')'}"></div>
         </div>
         <div class="rank-name">{{item.NickName}}</div>
         <div class="rank-score">{{item.GoodValue}}</div>
@@ -53,7 +53,7 @@
         <div class="rank-rank">{{item.rank}}</div>
         <div class="rank-img">
           <img class="wh-100" src="../images/pictureFrame.png">
-          <div class="rank-picture-box wh-100" :style="{backgroundImage:'url(' + item.Photo + ')'}"></div>
+          <div class="rank-picture-box wh-100" :style="{backgroundImage:'url(' + item.UImages || item.Photo + ')'}"></div>
         </div>
         <div class="rank-name">{{item.NickName}}</div>
         <div class="rank-score">{{item.GoodValue}}</div>
@@ -75,6 +75,9 @@ export default {
       page: 1,
       size: 4
     };
+  },
+  created(){
+      this.$store.commit('CHANGE_FLOWER' ,false)
   },
   mounted() {
     this.getList();
@@ -108,6 +111,7 @@ export default {
     getList() {
       //获取列表
       $request.post("blessingList", {}).then(res => {
+          //alert(JSON.stringify(res))
         let arr = res["_list"];
         for (let i = 0, len = arr.length; i < len; i++) {
           arr[i].rank = i + 1;

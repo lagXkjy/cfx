@@ -10,16 +10,23 @@ const vuexLocal = new VuexPersistence({
 
 const store = new Vuex.Store({
     state: {
-        showtmall: true
+        showtmall: true,
+        showFlower: false
     },
     getters: {
         showtmall(state){
             return state.showtmall
+        },
+        showFlower(state){
+            return state.showFlower
         }
     },
     mutations: {
         CHANGE_TMALL(state ,bool){
             state.showtmall = bool
+        },
+        CHANGE_FLOWER(state ,bool){
+            state.showFlower = bool
         }
     },
     actions: {

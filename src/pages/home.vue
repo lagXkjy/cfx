@@ -77,6 +77,7 @@ export default {
   },
   created() {
     this.getawarddes();
+    this.$store.commit('CHANGE_FLOWER' ,false)
   }
 };
 </script>

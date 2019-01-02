@@ -34,6 +34,7 @@ export default {
         }
     },
     created(){
+        this.$store.commit('CHANGE_FLOWER' ,false)
         // request.post('UploadImg_' ,{postFile: sessionStorage.getItem('img64')}).then(res => {
         //     alert(JSON.stringify(res))
         //     if(res.Status == true){
@@ -63,36 +64,36 @@ export default {
                 postFile: encodeURIComponent(sessionStorage.getItem('img64')),
                 ImgType: sessionStorage.getItem('Orientation')
             }).then(res => {
-            alert(sessionStorage.getItem('Orientation'))
+            //alert(sessionStorage.getItem('Orientation'))
             if(res.Status == true){
                 request.post('Testface' ,{imgpath: res.Results}).then(resp => {
                     //alert(JSON.stringify(resp))
                     if(resp.res){
                         sessionStorage.setItem('NickName' ,resp.NickName)
-                        this.$router.push({
+                        this.$router.replace({
                             path: '/result'
                         })
                     }else{
-                        alert('识别失败')
+                        //alert('识别失败')
                         this.$router.replace({
                             path: '/fail'
                         })
                     }
                 }).catch(err => {
-                    alert('Testface接口失败'+JSON.stringify(err))
+                    //alert('Testface接口失败'+JSON.stringify(err))
                     this.$router.replace({
                         path: '/fail'
                     })
                 })
             }else{
-                alert('上传resstatus不为true'+JSON.stringify(res))
+                //alert('上传resstatus不为true'+JSON.stringify(res))
                 this.$router.replace({
                     path: '/fail'
                 })
             }
         }).catch(err => {
             console.log('err' ,err)
-            alert('上传:'+JSON.stringify(err))
+            //alert('上传:'+JSON.stringify(err))
             this.$router.replace({
                 path: '/fail'
             })

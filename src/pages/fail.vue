@@ -71,6 +71,9 @@ export default {
   mounted() {
     this.drawEcharts();
   },
+  created(){
+      this.$store.commit('CHANGE_FLOWER' ,false)
+  },
   methods: {
     toTesting() {
         //alert('跳转')

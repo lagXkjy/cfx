@@ -20,7 +20,10 @@ export default {
             //stream: "1212"
         };
     },
-    created() {},
+    created() {
+        //location.reload()
+        this.$store.commit('CHANGE_FLOWER' ,false)
+    },
     methods: {
         // liveVideo() {
         //     function getUserMedia(constrains, success, error) {

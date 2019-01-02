@@ -44,7 +44,7 @@ export default {
                 //sessionStorage.setItem('img64' ,canvas.toDataURL('image/png' ,0.7).replace(/\s+/g,""))
                 //sessionStorage.setItem('img64' ,canvas.toBlob())
                 sessionStorage.setItem('Orientation' ,0)
-                this.$router.replace({
+                this.$router.push({
                     path: '/testing'
                 })
             }else{
@@ -74,20 +74,20 @@ export default {
                         const ctx = canvas.getContext('2d')
 
                         const anw = document.createAttribute("width")
-                        anw.nodeValue = w /3
+                        anw.nodeValue = w /4
                         // anw.nodeValue = w
                         const anh = document.createAttribute("height")
-                        anh.nodeValue = h /3
+                        anh.nodeValue = h /4
                         // anh.nodeValue = h
                         canvas.setAttributeNode(anw)
                         canvas.setAttributeNode(anh)
 
-                        ctx.drawImage(img ,0 ,0 ,w ,h ,0 ,0 ,w /3 ,h / 3)
+                        ctx.drawImage(img ,0 ,0 ,w ,h ,0 ,0 ,w /4 ,h / 4)
                         // ctx.drawImage(img ,0 ,0 ,w ,h)
                         sessionStorage.setItem('img64' ,canvas.toDataURL('image/png' ,0.3).replace(/\s+/g,""))
                         //alert(canvas.toDataURL('image/png' ,0.7))
                         sessionStorage.setItem('Orientation' ,1)
-                        self.$router.replace({
+                        self.$router.push({
                             path: '/testing'
                         })
                     }

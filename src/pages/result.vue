@@ -118,6 +118,9 @@ export default {
     components: {
         createImage
     },
+    created(){
+        this.$store.commit('CHANGE_FLOWER' ,false)
+    },
     data() {
         function initData(){
             return (Math.random() * (100 - 70) + 70).toFixed(0)
