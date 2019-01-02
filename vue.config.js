@@ -4,4 +4,5 @@ module.exports = {
         hot: true,
         disableHostCheck: true,
     },
+    productionSourceMap: false,
 }

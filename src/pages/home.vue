@@ -8,17 +8,17 @@
     </div>
     <!-- 横幅 -->
     <div class="banner-box absolute">
-      <img class="wh-100" src="../images/banner.png" alt>
+      <img class="wh-100" src="../images/banner-home.png" alt>
       <div class="banner-context width-100 absolute emblem">
-        <span style="transform: rotateZ(-32deg) translate3d(0px, 0px, 0px);">你</span>
+        <!-- <span style="transform: rotateZ(-32deg) translate3d(0px, 0px, 0px);">你</span>
         <span style="transform: rotateZ(-24deg) translate3d(0px, 0px, 0px);">是</span>
-        <span style="transform: rotateZ(-16deg) translate3d(0px, 0px, 0px);">有</span>
+        <span style="transform: rotateZ(-16deg) translate3d(0px, 0px, 0px);">有</span> -->
         <!-- <span class="banner-scale" style="transform: rotateZ(-8deg) translate3d(0px, 0px, 0px);">福</span>
         <span class="banner-scale" style="transform: rotateZ(0deg) translate3d(0px, 0px, 0px);">相</span>-->
-        <span style="transform: rotateZ(8deg) translate3d(0px, 0px, 0px);">的</span>
+        <!-- <span style="transform: rotateZ(8deg) translate3d(0px, 0px, 0px);">的</span>
         <span style="transform: rotateZ(16deg) translate3d(0px, 0px, 0px);">人</span>
         <span style="transform: rotateZ(24deg) translate3d(0px, 0px, 0px);">吗</span>
-        <span style="transform: rotateZ(32deg) translate3d(0px, 0px, 0px);">?</span>
+        <span style="transform: rotateZ(32deg) translate3d(0px, 0px, 0px);">?</span> -->
         <img class="fx-img" src="../images/fx.gif" alt>
       </div>
       <!-- 灯笼 -->
@@ -29,8 +29,8 @@
     </div>
     <!-- 刷脸开测 -->
     <div @click="toCamera" class="btn-box">
-      <img class="btn-img" src="../images/btn-green.png" alt>
-      <div class="btn-context wh-100 absolute flex justify-center align-center">刷脸开测</div>
+      <img class="btn-img" src="../images/btn-home.png" alt>
+      <!-- <div class="btn-context wh-100 absolute flex justify-center align-center">刷脸开测</div> -->
     </div>
   </div>
 </template>
@@ -85,9 +85,9 @@ export default {
 .fx-img {
   width: 1.6rem;
   position: absolute;
-  top: -0.1rem;
-  left: 38%;
-  transform: rotateZ(-1deg);
+  top: 0;
+  left: 39%;
+  // transform: rotateZ(0deg);
 }
 .banner-box {
   top: 1.5rem;
@@ -145,13 +145,14 @@ export default {
   left: 0;
   right: 0;
   margin: auto;
-  width: 3.16rem;
+  // width: 3.16rem;
+  width: 4rem;
 }
 
 .btn-img {
   width: 3.16rem;
   border-radius: 0.2rem;
-  box-shadow: 0rem 0rem 0.12rem 0.1rem #f8f3f3;
+  // box-shadow: 0rem 0rem 0.12rem 0.1rem #f8f3f3;
   display: block;
   margin: auto;
 }

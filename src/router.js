@@ -2,7 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
-const getComponent = str => res => require([`@/pages/${str}`], res)
+// const getComponent = str => res => require([`@/pages/${str}`], res)
+const getComponent = str => () => import(`@/pages/${str}`)
 
 export default new VueRouter({
     base: '/cfx/',
