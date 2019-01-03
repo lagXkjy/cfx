@@ -230,9 +230,13 @@ export default {
         }
     },
     created(){
+
+        
         //console.log(sessionStorage.getItem('NickName').substring(0,6))
     },
     mounted() {
+
+        document.getElementById('resultSond').play()
         this.drawEcharts();
 
         function rangeWenan(){
@@ -251,6 +255,7 @@ export default {
                 // this.$router.push({
                 //     path: '/congrats'
                 // })
+            document.getElementById('openFudaiSond').play()
 
             request.post('Addfu' ,{Goodvalue: this.avage}).then(res => {
                 //alert(JSON.stringify(res))

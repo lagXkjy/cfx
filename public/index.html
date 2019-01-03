@@ -17,8 +17,17 @@
   </style>
 </head>
 
-<body>
+<body id="my-wraper">
 
+    <audio id="bgsound" src="/audio/578bg.wav" loop></audio>
+    <audio id="openFudaiSond" src="/audio/8464fudai.mp3"></audio>
+    <audio id="resultSond" src="/audio/7691result.wav"></audio>
+    <audio id="startSond" src="/audio/504start.wav"></audio>
+    <script>
+        document.addEventListener("WeixinJSBridgeReady", function () {//微信
+            document.getElementById('bgsound').play();
+        }, false);
+    </script>
     <img id="loadIng" width="100" src="147592.gif" alt="">
 
   <noscript>

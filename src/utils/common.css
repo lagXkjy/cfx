@@ -8,6 +8,7 @@ body{
     height: 100vh;
     overflow: hidden;
     font-family: 'Microsoft YaHei';
+    background: #ead7b8;
 }
 .wh-100{
     width: 100%;

@@ -15,7 +15,7 @@
             <congrats5></congrats5>-->
         </div>
         <!-- 比拼福气 -->
-        <div @click="myShare" class="btn-box-b">
+        <div @click="showShareBG = true" class="btn-box-b">
             <img class="btn-img" src="../images/btn-green.png" alt>
             <div class="btn-context wh-100 absolute flex justify-center align-center">比拼福气</div>
         </div>
@@ -25,6 +25,9 @@
             <div class="btn-context wh-100 absolute flex justify-center align-center">福气榜单</div>
         </div>
         <!-- <tmall v-if="showtmall"></tmall> -->
+        <div v-if="showShareBG" class="shareBG">
+            <img class="shareImg" @click="showShareBG = false" width="90%" src="../images/fuceng.png" alt="">
+        </div>
     </div>
 </template>
 
@@ -49,7 +52,8 @@ export default {
     data() {
         return {
             result: sessionStorage.getItem("result"),
-            showtmall: false
+            showtmall: false,
+            showShareBG: false,
         };
     },
     created(){
@@ -76,6 +80,7 @@ export default {
         this.myShare();
     },
     methods: {
+
         successShare() {
             //分享成功的接口
             $request.post("AddShare", {}).then(res => {
@@ -118,6 +123,22 @@ export default {
 <style lang='scss' scoped>
 .addinfo-box {
     padding-top: 2rem;
+}
+.shareBG{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,.5);
+    z-index: 99999;
+    .shareImg{
+        position: absolute;
+        top: 30%;
+        left: 50%;
+        transform: translate(-50% ,-50%);
+    }
 }
 .addinfo-title {
     width: 100%;

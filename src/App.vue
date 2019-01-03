@@ -14,7 +14,15 @@ export default {
     };
   },
   created() {
-      document.body.removeChild(document.getElementById('LoadIng'))
+      //alert(JSON.stringify(document.getElementById('bgsound')))
+      document.getElementById('bgsound').play()
+
+      try{
+          document.body.removeChild(document.getElementById('LoadIng'))
+      }catch(e){
+
+      }
+      
 
 
     let ua = window.navigator.userAgent.toLowerCase();
@@ -23,8 +31,11 @@ export default {
     }
   },
   mounted() {
-    let hrt = document.documentElement.clientHeight; //获取当前可视区域的高度存到hrt变量
-    document.getElementById("app").style.height = hrt + "px"; //把获取到的高度赋值给根div
+    let wraper = document.getElementById("my-wraper");
+    let height = wraper.clientHeight;
+    let width = wraper.clientWidth;
+    height = width / 0.616;
+    document.getElementById("app").style.height = height + "px";
   },
   components: {
     bG

@@ -19,7 +19,7 @@
         <span style="transform: rotateZ(16deg) translate3d(0px, 0px, 0px);">人</span>
         <span style="transform: rotateZ(24deg) translate3d(0px, 0px, 0px);">吗</span>
         <span style="transform: rotateZ(32deg) translate3d(0px, 0px, 0px);">?</span> -->
-        <img class="fx-img" src="../images/fx.gif" alt>
+        <img class="fx-img" src="../images/fx.gif" style="transform: scale(1.1)" alt>
       </div>
       <!-- 灯笼 -->
       <div class="wh-100 absolute">
@@ -28,7 +28,7 @@
       </div>
     </div>
     <!-- 刷脸开测 -->
-    <div @click="toCamera" class="btn-box">
+    <div @click="toCamera" class="btn-box" style="transform: scale(1.1);">
       <img class="btn-img" src="../images/btn-home.png" alt>
       <!-- <div class="btn-context wh-100 absolute flex justify-center align-center">刷脸开测</div> -->
     </div>
@@ -40,6 +40,7 @@ import $request from "@/utils/request";
 export default {
   methods: {
     toCamera() {
+        document.getElementById('startSond').play()
       this.$router.push("/camera");
     },
     toCongrats(id, scode) {
