@@ -35,6 +35,7 @@ export default {
     let height = wraper.clientHeight;
     let width = wraper.clientWidth;
     height = width / 0.616;
+    height = height < document.body.clientHeight ? document.body.clientHeight : height
     document.getElementById("app").style.height = height + "px";
   },
   components: {

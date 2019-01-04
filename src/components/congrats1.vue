@@ -87,13 +87,13 @@ export default {
     font-size: 0.5rem;
     margin-top: 0.55rem;
     margin-bottom: 0.4rem;
-    font-style: italic;
+    // font-style: italic;
 }
 .price-price {
     font-weight: bold;
     font-size: 1rem;
     line-height: 1rem;
-    font-style: italic;
+    // font-style: italic;
 }
 .wmk {
     text-align: center;

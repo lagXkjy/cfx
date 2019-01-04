@@ -50,7 +50,7 @@ export default {
     margin: 0.3rem 0 0.2rem;
     font-size: 1rem;
     // font-family: "Pm";
-    font-style: italic;
+    // font-style: italic;
     font-weight: bold;
     line-height: 1rem;
 }

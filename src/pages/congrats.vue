@@ -63,7 +63,7 @@ export default {
         wx.ready(() => {
             wx.onMenuShareAppMessage({
                 title: "测福相", // 分享标题
-                desc: "测测你的福相", // 分享描述
+                desc: "你是2019年最有福气的人吗？快来测一测吧！", // 分享描述
                 link: "http://cx.shhuiya.com/CefuApi/BindUserPage", // 分享链接
                 imgUrl: "", // 分享图标
                 type: "", // 分享类型,music、video或link，不填默认为link
@@ -85,6 +85,7 @@ export default {
             //分享成功的接口
             $request.post("AddShare", {}).then(res => {
                 //alert(JSON.stringify(res));
+                location.href = 'http://cx.shhuiya.com/CefuApi/BindUserPage'
             });
         },
         myShare() {
