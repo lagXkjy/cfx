@@ -97,15 +97,15 @@
             </div>
         </div>
         <!-- 开福 -->
-        <div class="fd-box">
+        <div class="fd-box" style="transform: scale(1.1);">
             <div class="fd-open"></div>
-            <div>根据福气值</div>
-            <div>为您送上五芳福袋一个</div>
+            <div>开福袋</div>
+            <div>精美好礼等你拿</div>
             <div class="fd-save"></div>
         </div>
         <!-- 长按保存图片 -->
         <img v-if="image" class="cImage" :src="image" alt>
-        <div @click="kfd" class="fd-open fd-z-img opacity-0"></div>
+        <div @click="kfd" class="fd-open fd-z-img opacity-0" style="transform: scale(1.1);"></div>
     </div>
 </template>
 

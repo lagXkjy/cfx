@@ -19,7 +19,7 @@
         <!-- 马上使用 -->
         <div class="btn-box">
             <img class="btn-img" src="../images/btn-red.png" alt>
-            <div @click="immediate" class="btn-context wh-100 absolute flex justify-center align-center">马上使用</div>
+            <div @click="immediate" class="btn-context wh-100 absolute flex justify-center align-center">立即领取</div>
         </div>
     </div>
 </template>

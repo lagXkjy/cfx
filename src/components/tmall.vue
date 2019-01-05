@@ -18,6 +18,9 @@
             </div>
         </div>
         <div @click="close" class="close"></div>
+
+
+        <div class="copy-success" v-if="copySuccess">复制成功!</div>
     </div>
 </template>
 <script>
@@ -48,7 +51,8 @@ export default {
                     "【优惠券】https://m.tb.cn/h.3qO9m5x?sm=083f10 点击链接，再选择浏览器咑閞；或復·制这段描述￥9crMbLdlDIF￥后咑閞淘♂寳♀[来自超级会员的分享]"
             },
             text: "",
-            textcopy: ""
+            textcopy: "",
+            copySuccess: false
         };
     },
     mounted() {
@@ -85,10 +89,14 @@ export default {
         let clipboard = new ClipboardJS(".copy");
         let timer = null;
         clipboard.on("success", e => {
-            clearTimeout(timer);
-            timer = setTimeout(() => {
-                alert("复制成功");
-            }, 500);
+            // clearTimeout(timer);
+            // timer = setTimeout(() => {
+            //     alert("复制成功");
+            // }, 500);
+            this.copySuccess = true
+            setTimeout(() => {
+                this.copySuccess = false
+            }, 2000);
         });
         clipboard.on("error", e => {
             alert("复制失败");
@@ -103,6 +111,20 @@ export default {
 };
 </script>
 <style lang='scss' scoped>
+.copy-success{
+    position: fixed;
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: rgba(0,0,0,0.5);
+    color: #fff;
+    font-size: 16px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 9999;
+}
+
 .kuang-t {
     font-size: 0.32rem;
 }

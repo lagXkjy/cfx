@@ -65,7 +65,7 @@ export default {
                 title: "测福相", // 分享标题
                 desc: "你是2019年最有福气的人吗？快来测一测吧！", // 分享描述
                 link: "http://cx.shhuiya.com/CefuApi/BindUserPage", // 分享链接
-                imgUrl: "", // 分享图标
+                imgUrl: "https://cx.shhuiya.com/audio/sharepig.png", // 分享图标
                 type: "", // 分享类型,music、video或link，不填默认为link
                 dataUrl: "", // 如果type是music或video，则要提供数据链接，默认为空
                 success: this.successShare
@@ -73,7 +73,7 @@ export default {
             wx.onMenuShareTimeline({
                 title: "测福相", // 分享标题
                 link: "http://cx.shhuiya.com/CefuApi/BindUserPage", // 分享链接
-                imgUrl: "", // 分享图标
+                imgUrl: "https://cx.shhuiya.com/audio/sharepig.png", // 分享图标
                 success: this.successShare
             });
         });
@@ -136,8 +136,8 @@ export default {
     z-index: 99999;
     .shareImg{
         position: absolute;
-        top: 30%;
-        left: 50%;
+        top: 40%;
+        left: 55%;
         transform: translate(-50% ,-50%);
     }
 }
