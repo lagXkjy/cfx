@@ -97,15 +97,15 @@
             </div>
         </div>
         <!-- 开福 -->
-        <div class="fd-box" style="transform: scale(1.1);">
-            <div class="fd-open"></div>
-            <div>开福袋</div>
-            <div>精美好礼等你拿</div>
+        <div class="fd-box">
+            <div class="fd-open" style="transform: scale(1.3) translateY(-5px);"></div>
+            <!-- <div style="transform: scale(1.65);">开福袋</div> -->
+            <div style="transform: scale(1.65);">精美好礼等你拿</div>
             <div class="fd-save"></div>
         </div>
         <!-- 长按保存图片 -->
         <img v-if="image" class="cImage" :src="image" alt>
-        <div @click="kfd" class="fd-open fd-z-img opacity-0" style="transform: scale(1.1);"></div>
+        <div @click="kfd" class="fd-open fd-z-img opacity-0"></div>
     </div>
 </template>
 
@@ -143,6 +143,7 @@ export default {
             backObj: {
                 'background-image': "url("+ sessionStorage.getItem('img64') || '../images/pictureFrame.png' +")",
                 'transform': sessionStorage.getItem('Orientation') == 1 ? 'rotate(90deg) scale(1.2)' : 'rotate(0)'
+                //'transform': 'rotate(90deg) scale(1.2)'
             },
 
             radarTitle: '',

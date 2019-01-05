@@ -36,7 +36,7 @@
                             <div class="frame-box">
                                 <img class="wh-100" src="../images/pictureFrame.png">
                                 <div class="picture-box wh-100">
-                                    <div class="picture-box wh-100" :style="backObj"></div>
+                                    <div class="picture-box wh-100" :style="[backObj]"></div>
                                 </div>
                             </div>
 
@@ -133,7 +133,14 @@ import { setTimeout } from "timers";
 export default {
     props: ['radarOptions' ,'nickName' ,'radarTitle' ,'avage' ,'backObj'],
     data() {
-        return {};
+        return {
+            iphone: {
+                //width: (sessionStorage.getItem('Orientation') == 0 ? '1.7rem' : '2.2641rem') + '!important',
+                height: '1.7rem' + '!important',
+                width: '2.2641rem' + '!important'
+                // height: (sessionStorage.getItem('Orientation') == 0 ? '2.2641rem' : '1.7rem') + '!important',
+            }
+        };
     },
     created(){
         this.$store.commit('CHANGE_FLOWER' ,false)
@@ -221,7 +228,7 @@ export default {
     top: 0;
     right: 0;
     margin: auto;
-    z-index: -1;
+    //z-index: -1;
     overflow: hidden;
     border-radius: 50%;
     //background: url(http://pic1.nipic.com/2008-12-30/200812308231244_2.jpg);
@@ -235,7 +242,7 @@ export default {
     position: absolute;
     bottom: 300%;
     left: 0;
-    z-index: -10;
+    z-index: 99999;
     background: url("../images/bg.png") no-repeat;
     background-size: 100%;
 }

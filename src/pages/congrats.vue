@@ -20,13 +20,19 @@
             <div class="btn-context wh-100 absolute flex justify-center align-center">比拼福气</div>
         </div>
         <!-- 福气榜单 -->
-        <div @click="toRanking" class="btn-box">
+        <div @click="toRanking" class="btn-box" style="bottom: 1.5rem;">
             <img class="btn-img" src="../images/btn-green.png" alt>
             <div class="btn-context wh-100 absolute flex justify-center align-center">福气榜单</div>
         </div>
+        <div @click="shuomingBG = true" class="btn-box" style="transform: scale(0.6);">
+            <img class="btn-img" src="../images/guize.png" alt>
+        </div>
         <!-- <tmall v-if="showtmall"></tmall> -->
         <div v-if="showShareBG" class="shareBG">
-            <img class="shareImg" @click="showShareBG = false" width="90%" src="../images/fuceng.png" alt="">
+            <img class="shareImg" @click="showShareBG = false" width="100%" src="../images/fuceng.png" alt="">
+        </div>
+        <div v-if="shuomingBG" class="shareBG">
+            <img class="shuoming" @click="shuomingBG = false" width="100%" src="../images/shuoming.png" alt="">
         </div>
     </div>
 </template>
@@ -54,6 +60,7 @@ export default {
             result: sessionStorage.getItem("result"),
             showtmall: false,
             showShareBG: false,
+            shuomingBG: false
         };
     },
     created(){
@@ -136,8 +143,14 @@ export default {
     z-index: 99999;
     .shareImg{
         position: absolute;
-        top: 40%;
-        left: 55%;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .shuoming{
+        position: absolute;
+        top: 50%;
+        left: 50%;
         transform: translate(-50% ,-50%);
     }
 }
@@ -150,7 +163,7 @@ export default {
 }
 .info-box {
     position: absolute;
-    top: 3.5rem;
+    top: 2.8rem;
     left: 0;
     right: 0;
     margin: auto;
@@ -160,7 +173,7 @@ export default {
 
 .btn-box-b {
     position: absolute;
-    bottom: 1.8rem;
+    bottom: 3rem;
     left: 0;
     right: 0;
     margin: auto;
