@@ -1,6 +1,6 @@
 <template>
     <div class="addinfo-box wh-100 absolute">
-        <div class="addinfo-title">恭喜获得</div>
+        <div class="addinfo-title" style="transform: translateY(-10px);">恭喜获得</div>
         <div class="info-box">
             <img class="info-bg wh-100" src="../images/info.png" alt>
             <congrats1 v-if="result == 3 || result == 4 || result == 5"></congrats1>
@@ -17,7 +17,7 @@
         <!-- 比拼福气 -->
         <div @click="showShareBG = true" class="btn-box-b">
             <img class="btn-img" src="../images/btn-green.png" alt>
-            <div class="btn-context wh-100 absolute flex justify-center align-center">比拼福气</div>
+            <div class="btn-context wh-100 absolute flex justify-center align-center">分享福气</div>
         </div>
         <!-- 福气榜单 -->
         <div @click="toRanking" class="btn-box" style="bottom: 1.5rem;">
@@ -163,7 +163,7 @@ export default {
 }
 .info-box {
     position: absolute;
-    top: 2.8rem;
+    top: 3rem;
     left: 0;
     right: 0;
     margin: auto;

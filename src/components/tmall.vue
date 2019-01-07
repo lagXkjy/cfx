@@ -166,12 +166,14 @@ export default {
     position: fixed;
     top: 0;
     left: 0;
+    right: 0;
+    bottom: 0;
     background: rgba($color: #000000, $alpha: 0.8);
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    z-index: 999;
+    z-index: 99999999;
 }
 .kuang-box {
     position: relative;

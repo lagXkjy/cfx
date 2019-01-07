@@ -1,6 +1,6 @@
 <template>
     <div class="congrats2 wh-100 absolute">
-        <tmall :showtmall="showtmall" :money="money" @close='close'></tmall>
+        <tmall class="bgtmall" :showtmall="showtmall" :money="money" @close='close'></tmall>
         <img class="zhnl" src="../images/zhnl.png" alt>
         <div class="text-shadow pm">
             <div class="man">
@@ -68,6 +68,15 @@ export default {
 </script>
 
  <style lang='scss' scoped>
+  .bgtmall{
+     position: fixed;
+     width: 100%;
+     height: 100%;
+     top: 0;
+     left: 0;
+     right: 0;
+     bottom: 0;
+ }
 .pm {
     font-family: "Pm";
 }

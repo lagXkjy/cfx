@@ -50,7 +50,7 @@
             <div class="result-context">
                 <div class="result-text">年度最旺福气</div>
                 <div class="result-f">{{radarTitle}}</div>
-                <div class="result-text">{{radarText}}</div>
+                <div class="result-text" style="font-size: 0.4rem;">{{radarText}}</div>
             </div>
         </div>
         <!-- 横幅 -->
@@ -98,9 +98,9 @@
         </div>
         <!-- 开福 -->
         <div class="fd-box">
-            <div class="fd-open" style="transform: scale(1.3) translateY(-5px);"></div>
+            <div class="fd-open" style="transform: scale(1.5) translateY(-5px);"></div>
             <!-- <div style="transform: scale(1.65);">开福袋</div> -->
-            <div style="transform: scale(1.65);">精美好礼等你拿</div>
+            <div style="transform: scale(2.2);">点击福袋领好礼</div>
             <div class="fd-save"></div>
         </div>
         <!-- 长按保存图片 -->
@@ -141,8 +141,9 @@ export default {
         return {
             nickName: getName(),
             backObj: {
-                'background-image': "url("+ sessionStorage.getItem('img64') || '../images/pictureFrame.png' +")",
-                'transform': sessionStorage.getItem('Orientation') == 1 ? 'rotate(90deg) scale(1.2)' : 'rotate(0)'
+                //'background-image': "url("+ sessionStorage.getItem('img64') || '../images/pictureFrame.png' +")",
+                'background-image': "url("+ sessionStorage.getItem('imgpath') || '../images/pictureFrame.png' +")",
+                //'transform': sessionStorage.getItem('Orientation') == 1 ? 'rotate(90deg) scale(1.2)' : 'rotate(0)'
                 //'transform': 'rotate(90deg) scale(1.2)'
             },
 
@@ -442,12 +443,12 @@ export default {
     text-align: center;
 }
 .result-text {
-    font-size: 0.36rem;
+    font-size: 0.4rem;
     line-height: 0.36rem;
     color: #b31e23;
 }
 .result-f {
-    font-size: 0.4rem;
+    font-size: 0.6rem;
     line-height: 0.4rem;
     color: #00587f;
     margin: 0.18rem 0;
@@ -510,7 +511,7 @@ export default {
 .fd-open {
     width: 2.34rem;
     height: 2.34rem;
-    background: url("../images/open.png") no-repeat;
+    background: url("../images/open.gif") no-repeat;
     background-size: 100%;
     margin: auto;
 }

@@ -71,7 +71,7 @@
                         <div class="result-context">
                             <div class="result-text">年度最旺福气</div>
                             <div class="result-f">{{radarTitle}}</div>
-                            <div class="result-text">{{radarText}}</div>
+                            <div class="result-text" style="font-size: 0.4rem;">{{radarText}}</div>
                         </div>
                     </div>
                     <!-- 横幅 -->
@@ -131,7 +131,7 @@
 import html2canvas from "html2canvas";
 import { setTimeout } from "timers";
 export default {
-    props: ['radarOptions' ,'nickName' ,'radarTitle' ,'avage' ,'backObj'],
+    props: ['radarOptions' ,'nickName' ,'radarTitle' ,'radarText' ,'avage' ,'backObj'],
     data() {
         return {
             iphone: {
@@ -228,7 +228,7 @@ export default {
     top: 0;
     right: 0;
     margin: auto;
-    //z-index: -1;
+    z-index: -1;
     overflow: hidden;
     border-radius: 50%;
     //background: url(http://pic1.nipic.com/2008-12-30/200812308231244_2.jpg);
