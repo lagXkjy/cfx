@@ -17,6 +17,7 @@
         </div>
         <div class="quan pm">五芳斋天猫旗舰店全场通用</div>
         <!-- 马上使用 -->
+        <div class="pm" style="font-size:12px;color: green;text-align: center;">数量有限，领完即止</div>
         <div class="btn-box">
             <img class="btn-img" src="../images/btn-red.png" alt>
             <div @click="immediate" class="btn-context wh-100 absolute flex justify-center align-center">立即领取</div>
@@ -123,8 +124,8 @@ export default {
 .yhq {
     font-size: 0.6rem;
     line-height: 0.6rem;
-    margin-bottom: 0.2rem;
-    margin-top: 0.1rem;
+    margin-bottom: 0.15rem;
+    margin-top: 0.05rem;
 }
 .quan {
     border: 0.09rem solid #00a64b;

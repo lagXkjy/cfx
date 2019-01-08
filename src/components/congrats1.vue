@@ -10,6 +10,7 @@
         <div class="wmk pm">无门槛优惠券</div>
         <div class="quan pm">五芳斋天猫旗舰店全场通用</div>
         <!-- 马上使用 -->
+        <div class="pm" style="font-size:12px;color: green;text-align: center;">数量有限，领完即止</div>
         <div class="btn-box">
             <img class="btn-img" src="../images/btn-red.png" alt>
             <div @click="immediate" class="btn-context wh-100 absolute flex justify-center align-center">立即领取</div>

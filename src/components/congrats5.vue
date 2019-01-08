@@ -8,9 +8,9 @@
         </div>
         <img class="xc" src="../images/xc.png" alt>
         <div class="ck pm">图片仅供参考，具体以实物为准</div>
-
+        <div class="ck pm">数量有限，领完即止</div>
         <!-- 马上使用 -->
-        <div class="btn-box" v-if="showtmall">
+        <div class="btn-box">
             <img class="btn-img" src="../images/btn-red.png" alt>
             <div @click="getImmediate" class="btn-context wh-100 absolute flex justify-center align-center">立即领取</div>
         </div>

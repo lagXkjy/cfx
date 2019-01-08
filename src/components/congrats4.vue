@@ -5,6 +5,7 @@
       <div class="ds pm">戴森吹风机一台</div>
       <div class="sup">SUPERSONIC HDOI</div>
       <div class="ck pm">图片仅供参考，具体以实物为准</div>
+      <div class="ck pm">数量有限，领完即止</div>
     </div>
     <img class="ds-image" src="../images/ds.png" alt>
     <!-- 立即领取 -->

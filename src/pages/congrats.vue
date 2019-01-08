@@ -6,13 +6,9 @@
             <congrats1 v-if="result == 3 || result == 4 || result == 5"></congrats1>
             <congrats2 v-else-if="result == 9 || result == 10"></congrats2>
             <congrats3 v-else-if="result == 6 || result == 7 || result == 8"></congrats3>
-            <!-- <congrats4 v-else-if="result == 6 || result == 7 || result == 8"></congrats4> -->
             <congrats4 v-else-if="result == 1"></congrats4>
             <congrats5 v-else-if="result == 2"></congrats5>
-            <!-- <congrats2></congrats2>
-      <congrats3></congrats3>
-      <congrats4></congrats4>
-            <congrats5></congrats5>-->
+            <!-- <congrats5></congrats5> -->
         </div>
         <!-- 比拼福气 -->
         <div @click="showShareBG = true" class="btn-box-b">

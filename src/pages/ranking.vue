@@ -5,16 +5,16 @@
       <img class="rank-top opacity-none" src="../images/top.png" alt>
       <div class="rank-list rank-list-f">
         <div class="rank-rank"></div>
-        <div class="rank-img"></div>
+        <!-- <div class="rank-img"></div> -->
         <div class="rank-name"></div>
         <div class="rank-score">福气值</div>
       </div>
       <div class="rank-list relative" v-for="item in list" :key="item.rank">
         <div class="rank-rank">{{item.rank}}</div>
-        <div class="rank-img">
+        <!-- <div class="rank-img">
           <img class="wh-100" src="../images/pictureFrame.png">
           <div class="rank-picture-box wh-100" :style="{backgroundImage:'url(' + item.UImages || item.Photo + ')'}"></div>
-        </div>
+        </div> -->
         <div class="rank-name">{{item.NickName}}</div>
         <div class="rank-score">{{item.GoodValue}}</div>
         <div class="rank-border rank-border-green"></div>
@@ -45,16 +45,16 @@
       <img @click="reduce" class="rank-top" src="../images/top.png" alt>
       <div class="rank-list rank-list-f opacity-none">
         <div class="rank-rank"></div>
-        <div class="rank-img"></div>
+        <!-- <div class="rank-img"></div> -->
         <div class="rank-name"></div>
         <div class="rank-score">福气值</div>
       </div>
       <div class="rank-list relative opacity-none" v-for="item in list" :key="item.rank">
         <div class="rank-rank">{{item.rank}}</div>
-        <div class="rank-img">
+        <!-- <div class="rank-img">
           <img class="wh-100" src="../images/pictureFrame.png">
           <div class="rank-picture-box wh-100" :style="{backgroundImage:'url(' + item.UImages || item.Photo + ')'}"></div>
-        </div>
+        </div> -->
         <div class="rank-name">{{item.NickName}}</div>
         <div class="rank-score">{{item.GoodValue}}</div>
         <div class="rank-border rank-border-green"></div>
@@ -73,7 +73,7 @@ export default {
       rankingList: [],
       list: [],
       page: 1,
-      size: 4
+      size: 5
     };
   },
   created(){
@@ -139,7 +139,7 @@ export default {
 .rank-top {
   width: 0.57rem;
   display: block;
-  margin: 0 auto 0.4rem;
+  margin: 0 auto 0.8rem;
 }
 .rank-bottom {
   width: 0.57rem;
@@ -194,7 +194,8 @@ export default {
   background-size: auto 100%;
 }
 .rank-name {
-  width: 1.8rem;
+  // width: 1.8rem;
+  width: 3rem;
   font-size: 0.32rem;
   color: #b31e23;
 }
