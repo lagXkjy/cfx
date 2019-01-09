@@ -34,7 +34,8 @@ export default {
     return {
       Name: "",
       Phone: "",
-      Site: ""
+      Site: "",
+      flag: true, //防止连点
     };
   },
   created(){
@@ -42,6 +43,8 @@ export default {
   },
   methods: {
     submit() {
+      if(!this.flag) return
+      this.flag = false
       if (this.Name.trim().length <= 0) {
         return alert("请填写收件人");
       }
@@ -61,6 +64,7 @@ export default {
         .post("PostAddress", data)
         .then(res => {
           if (!res.res) {
+            this.flag = true
             alert('提交失败');
           } else {
             // sessionStorage.setItem("scode", 1); // 0未领取 1已领取
@@ -69,6 +73,7 @@ export default {
           }
         })
         .catch(err => {
+          this.flag = true
           alert('提交失败');
         });
     }
